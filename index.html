@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mi Tienda</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+    <h1 class="logo">MI TIENDA</h1>
+
+    <input type="text" id="buscador" placeholder="Buscar productos...">
+
+    <div id="carritoBtn">
+        🛒 <span id="cantidad">0</span>
+    </div>
+</header>
+
+<nav class="menu">
+    <button onclick="filtrar('Todos')">Todos</button>
+    <button onclick="filtrar('Ropa')">Ropa</button>
+    <button onclick="filtrar('Electrodomésticos')">Electrodomésticos</button>
+    <button onclick="filtrar('Cosméticos')">Cosméticos</button>
+</nav>
+
+<div class="productos" id="productos"></div>
+
+<div class="carrito" id="carrito">
+    <h2>Carrito</h2>
+    <div id="lista"></div>
+    <h3>Total: $<span id="total">0</span></h3>
+<button onclick="finalizarCompra()">Finalizar compra</button>
+    <button onclick="cerrarCarrito()">Cerrar</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
