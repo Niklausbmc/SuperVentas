@@ -47,17 +47,23 @@ function mostrarProductos() {
 }
 
 // =================== AGREGAR ===================
-function agregar(id) {
+function agregarAlCarrito(id) {
     const producto = productos.find(p => p.id === id);
+
     const existe = carrito.find(p => p.id === id);
 
     if (existe) {
         existe.cantidad++;
     } else {
-        carrito.push({ ...producto, cantidad: 1 });
+        carrito.push({
+            ...producto,
+            cantidad: 1
+        });
     }
 
     guardarCarrito();
+    mostrarCarrito();
+}
     actualizarContador();
     const carritoIcon = document.querySelector(".carrito-flotante");
 
@@ -188,6 +194,7 @@ function mostrarProductosFiltrados(lista) {
         `;
     });
 }
+
 
 
 
