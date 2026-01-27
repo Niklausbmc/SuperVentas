@@ -1,8 +1,4 @@
-let productos = [
-  { id: 1, nombre: "Ventilador", precio: 22000, imagen: "img/ventilador.jpg" },
-  { id: 2, nombre: "Zapatos", precio: 6500, imagen: "img/zapatos.jpg" }
-];
-
+let productos = [];
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 const contenedor = document.getElementById("productos");
@@ -10,10 +6,34 @@ const lista = document.getElementById("listaCarrito");
 const totalHTML = document.getElementById("total");
 const contador = document.getElementById("contador");
 
-mostrarProductos();
-actualizarTodo();
+cargarCSV();
+
+function cargarCSV() {
+  fetch("productos.csv")
+    .then(res => res.text())
+    .then(texto => {
+      const filas = texto.trim().split("\n");
+      filas.shift(); // quitar encabezado
+
+      filas.forEach(fila => {
+        const [id, nombre, precio, imagen] = fila.split(";");
+
+        productos.push({
+          id: Number(id),
+          nombre,
+          precio: Number(precio),
+          imagen
+        });
+      });
+
+      mostrarProductos();
+      actualizarTodo();
+    });
+}
 
 function mostrarProductos() {
+  contenedor.innerHTML = "";
+
   productos.forEach(p => {
     contenedor.innerHTML += `
       <div class="producto">
@@ -95,11 +115,6 @@ function cerrarCarrito() {
 }
 
 function enviarWhatsApp() {
-  if (carrito.length === 0) {
-    alert("Carrito vacío");
-    return;
-  }
-
   const metodo = document.querySelector('input[name="pago"]:checked').value;
 
   let msg = "🛒 Pedido:%0A";
