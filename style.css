@@ -42,7 +42,7 @@ header input {
 }
 
 .producto:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px) scale(1.03);
 }
 
 .producto img {
@@ -127,3 +127,34 @@ header input {
 
 .verde { background: #22c55e; color: white; }
 .rojo  { background: #ef4444; color: white; }
+
+#modal-carrito {
+  backdrop-filter: blur(4px);
+}
+
+.modal {
+  animation: carritoEntrada 0.35s ease;
+}
+
+@keyframes carritoEntrada {
+  from {
+    transform: translateY(40px) scale(.9);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.shake {
+  animation: shake .4s;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
