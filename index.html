@@ -1,62 +1,39 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Tienda Online</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>SuperVentas</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- ================= MODAL CARRITO ================= -->
-<div id="modal-carrito" class="modal">
-  <div class="modal-contenido">
+<header>
+  <h1>🛒 SuperVentas</h1>
+  <input type="text" id="buscador" placeholder="Buscar productos...">
+</header>
 
+<main id="productos"></main>
+
+<!-- CARRITO FLOTANTE -->
+<div class="carrito-flotante" onclick="abrirCarrito()">
+  🛒 <span id="contador">0</span>
+</div>
+
+<!-- MODAL -->
+<div id="modal-carrito">
+  <div class="modal">
     <h2>🧾 Boleta de compra</h2>
 
     <div id="lista-carrito"></div>
 
     <h3>Total: S/ <span id="total">0</span></h3>
 
-    <button class="btn-whatsapp" onclick="comprarWhatsApp()">
-      ✅ Finalizar compra
-    </button>
-
-    <button class="btn-cerrar" onclick="cerrarCarrito()">
-      ❌ Cerrar
-    </button>
-
+    <button class="btn verde" onclick="comprarWhatsApp()">Finalizar compra</button>
+    <button class="btn rojo" onclick="cerrarCarrito()">Cerrar</button>
   </div>
 </div>
 
-<!-- ================= HEADER ================= -->
-<header class="top">
-    <h2>🛒 Mi Tienda</h2>
-    <input type="text" id="buscador" placeholder="Buscar productos...">
-</header>
-<h1 class="titulo">🛒 SuperVentas</h1>
-
-<div id="productos" class="grid-productos"></div>
-<!-- ================= CATEGORÍAS ================= -->
-<div class="categorias">
-    <span>🔥 Ofertas</span>
-    <span>👕 Ropa</span>
-    <span>👟 Zapatos</span>
-    <span>🎧 Electrónica</span>
-    <span>🏠 Hogar</span>
-</div>
-
-<!-- ================= CARRITO FLOTANTE ================= -->
-<div class="carrito-flotante" onclick="abrirCarrito()">
-    🛒 <span id="contador">0</span>
-</div>
-
-<!-- ================= SCRIPT ================= -->
-<script src="script.js" defer></script>
-
+<script src="script.js"></script>
 </body>
 </html>
-
-
-
-
