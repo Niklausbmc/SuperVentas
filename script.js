@@ -132,7 +132,31 @@ function comprarWhatsApp(){
     msg += `${p.nombre} x${p.cantidad}%0A`;
   });
   msg += `Total: S/ ${totalHTML.textContent}`;
-  window.open(`https://wa.me/51999999999?text=${msg}`);
+  window.open(`https://wa.me/5355030439?text=${msg}`);
 }
 
+function finalizarCompra() {
+  const metodo = document.querySelector('input[name="pago"]:checked');
+
+  if (!metodo) {
+    alert("Selecciona un método de pago");
+    return;
+  }
+
+  if (carrito.length === 0) {
+    alert("Tu carrito está vacío");
+    return;
+  }
+
+  alert(
+    "✅ Compra realizada\n" +
+    "Método: " + metodo.value + "\n" +
+    "Total: S/ " + totalHTML.textContent
+  );
+
+  carrito = [];
+  guardar();
+  mostrarCarrito();
+  cerrarCarrito();
+}
 
