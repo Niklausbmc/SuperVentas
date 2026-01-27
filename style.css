@@ -84,26 +84,32 @@ header input {
 }
 
 .modal {
-  background: white;
-  width: 350px;
-  padding: 25px;
-  border-radius: 15px;
-  animation: aparecer .3s ease;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
 }
 
-@keyframes aparecer {
+.boleta {
+  background: white;
+  width: 320px;
+  padding: 20px;
+  border-radius: 12px;
+  animation: entrada 0.3s ease;
+}
+
+@keyframes entrada {
   from {
-    transform: scale(.7);
+    transform: translateY(40px) scale(0.9);
     opacity: 0;
   }
   to {
-    transform: scale(1);
+    transform: translateY(0) scale(1);
     opacity: 1;
   }
-}
-
-.item {
-  margin: 10px 0;
 }
 
 .cantidad {
@@ -189,4 +195,5 @@ header input {
 .btn-finalizar:hover {
   background: #00b34a;
 }
+
 
