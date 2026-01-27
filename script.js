@@ -14,7 +14,7 @@ fetch("productos.csv")
 
     filas.forEach(f => {
       if (!f.trim()) return;
-      const [id,nombre,precio,stock,categoria,imagen] = f.split(",");
+      const [id,nombre,precio,stock,categoria,imagen] = f.split(";");
       productos.push({
         id:+id,
         nombre,
@@ -128,3 +128,4 @@ function comprarWhatsApp(){
   msg += `Total: S/ ${totalHTML.textContent}`;
   window.open(`https://wa.me/51999999999?text=${msg}`);
 }
+
