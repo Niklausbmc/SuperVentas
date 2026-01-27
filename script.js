@@ -118,9 +118,10 @@ function comprarWhatsApp() {
 
     mensaje += `%0ATotal: S/ ${totalHTML.textContent}`;
 
-    window.open(`https://wa.me/51999999999?text=${mensaje}`);
+    window.open(`https://wa.me/5355030439?text=${mensaje}`);
 }
 
 // =================== INICIO ===================
 mostrarProductos();
 actualizarContador();
+
