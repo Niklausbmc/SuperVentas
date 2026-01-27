@@ -9,58 +9,42 @@
 
 <h1>Tienda Online</h1>
 
-<div id="productos" class="productos"></div>
+<div class="contenedor">
 
-<h2>🛒 Carrito</h2>
-<div id="carrito"></div>
+    <!-- PRODUCTOS -->
+    <div id="productos" class="productos"></div>
 
-<h3>Total: $<span id="total">0</span></h3>    
+    <!-- CARRITO -->
+    <div class="carrito">
+        <h2>🛒 Carrito</h2>
 
-<button onclick="vaciarCarrito()">Vaciar carrito</button>
-<button class="finalizar" onclick="finalizarCompra()">
-    🟢 Comprar por WhatsApp
-</button>    
-<button class="finalizar" onclick="mostrarBoleta()">
-    🧾 Finalizar compra
-</button>
+        <div id="carrito"></div>
 
- <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Tienda Online</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+        <p><strong>Total: $<span id="total">0</span></strong></p>
 
-<h1>Tienda Online</h1>
+        <button onclick="vaciarCarrito()">Vaciar carrito</button>
 
-<div id="productos" class="productos"></div>
+        <button class="finalizar" onclick="mostrarBoleta()">
+            🧾 Finalizar compra
+        </button>
 
-<h2>🛒 Carrito</h2>
-<div id="carrito"></div>
+        <button class="whatsapp" onclick="finalizarCompra()">
+            🟢 Comprar por WhatsApp
+        </button>
+    </div>
 
-<h3>Total: $<span id="total">0</span></h3>    
+</div>
 
-<button onclick="vaciarCarrito()">Vaciar carrito</button>
-<button class="finalizar" onclick="finalizarCompra()">
-    🟢 Comprar por WhatsApp
-</button>    
-<button class="finalizar" onclick="finalizarCompra()">
-    Finalizar compra
-</button>
-    
+<!-- BOLETA -->
+<div id="boleta" class="boleta oculto">
+    <h2>🧾 Boleta de compra</h2>
+    <div id="boleta-productos"></div>
+    <h3>Total: $<span id="boleta-total"></span></h3>
+
+    <button onclick="finalizarCompra()">Enviar por WhatsApp</button>
+    <button onclick="cerrarBoleta()">Cerrar</button>
+</div>
+
 <script src="script.js"></script>
 </body>
 </html>
-
-
-   
-<script src="script.js"></script>
-</body>
-</html>
-
-
-
-
-
