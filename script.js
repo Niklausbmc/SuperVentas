@@ -40,17 +40,31 @@ function guardarCarrito() {
 }
 
 function agregarCarrito(id, nombre, precio) {
-  const producto = carrito.find(p => p.id === id);
+  const prod = carrito.find(p => p.id === id);
 
-  if (producto) {
-    producto.cantidad++;
+  if (prod) {
+    prod.cantidad++;
   } else {
-    carrito.push({
-      id,
-      nombre,
-      precio,
-      cantidad: 1
-    });
+    carrito.push({ id, nombre, precio, cantidad: 1 });
+  }
+
+  guardarCarrito();
+  mostrarCarrito();
+}
+
+function aumentar(id) {
+  const prod = carrito.find(p => p.id === id);
+  prod.cantidad++;
+  guardarCarrito();
+  mostrarCarrito();
+}
+
+function disminuir(id) {
+  const prod = carrito.find(p => p.id === id);
+  prod.cantidad--;
+
+  if (prod.cantidad <= 0) {
+    carrito = carrito.filter(p => p.id !== id);
   }
 
   guardarCarrito();
@@ -67,7 +81,14 @@ function mostrarCarrito() {
     total += subtotal;
 
     const li = document.createElement("li");
-    li.textContent = `${p.nombre} x${p.cantidad} - $${subtotal}`;
+    li.innerHTML = `
+      <strong>${p.nombre}</strong><br>
+      <button onclick="disminuir('${p.id}')">−</button>
+      ${p.cantidad}
+      <button onclick="aumentar('${p.id}')">+</button>
+      &nbsp; $${subtotal}
+    `;
+
     lista.appendChild(li);
   });
 
