@@ -1,40 +1,57 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Mi Tienda</title>
-    <link rel="stylesheet" href="style.css?v=2">
+  <meta charset="UTF-8">
+  <title>Mi Tienda</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<header class="top">
-    <h1 class="logo">MI TIENDA</h1>
+  <!-- ENCABEZADO -->
+  <header class="header">
+    <h1>MI TIENDA</h1>
 
-    <input type="text" id="buscador" placeholder="Buscar productos...">
+    <input 
+      type="text" 
+      id="buscador" 
+      placeholder="Buscar productos..."
+      onkeyup="mostrarProductos()"
+    >
 
-    <div id="carritoBtn">
-        🛒 <span id="cantidad">0</span>
+    <div class="carrito-icono">
+      🛒 <span id="contador">0</span>
     </div>
-</header>
+  </header>
 
-<nav class="menu">
-    <button onclick="filtrar('Todos')">Todos</button>
-    <button onclick="filtrar('Ropa')">Ropa</button>
-    <button onclick="filtrar('Electrodomésticos')">Electrodomésticos</button>
-    <button onclick="filtrar('Cosméticos')">Cosméticos</button>
-</nav>
+  <!-- MENÚ CATEGORÍAS -->
+  <nav class="menu">
+    <button onclick="filtrarCategoria('')">Todos</button>
+    <button onclick="filtrarCategoria('Ropa')">Ropa</button>
+    <button onclick="filtrarCategoria('Electrodomestico')">Electrodomésticos</button>
+    <button onclick="filtrarCategoria('Cosmeticos')">Cosméticos</button>
+  </nav>
 
-<div class="productos" id="productos"></div>
+  <!-- PRODUCTOS -->
+  <main id="productos" class="productos"></main>
 
-<div class="carrito" id="carrito">
-    <h2>Carrito</h2>
-    <div id="lista"></div>
-    <h3>Total: $<span id="total">0</span></h3>
-<button onclick="finalizarCompra()">Finalizar compra</button>
-    <button onclick="cerrarCarrito()">Cerrar</button>
-</div>
+  <!-- PANEL CARRITO -->
+  <div id="carrito-panel">
+    <h3>🛒 Carrito</h3>
+    <div id="carrito-items"></div>
+    <hr>
+    <p><strong>Total:</strong> $<span id="total">0</span></p>
+    <button onclick="vaciarCarrito()">Vaciar carrito</button>
+<button onclick="comprarWhatsApp()" class="btn-wsp">
+  Comprar por WhatsApp
+</button>
+  </div>
 
-<script src="script.js"></script>
+  <!-- JS -->
+  <script src="script.js"></script>
+
 </body>
-
 </html>
