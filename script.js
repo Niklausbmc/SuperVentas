@@ -1,7 +1,15 @@
+let productosAdmin = JSON.parse(localStorage.getItem("productosAdmin")) || [];
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 let productos = [];
 let productosFiltrados = [];
 let total = 0;
+
+if (productosAdmin.length > 0) {
+  productos = productosAdmin;
+  mostrarProductos(productos);
+  mostrarCarrito();
+  return;
+}
 
 fetch("productos.csv")
   .then(res => res.text())
@@ -198,3 +206,4 @@ document.getElementById("confirmarCompra").addEventListener("click", () => {
   actualizarCarrito();
   document.getElementById("checkout").style.display = "none";
 });
+
