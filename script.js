@@ -1,79 +1,97 @@
+// ============================
+// CARGAR PRODUCTOS
+// ============================
+
+let productos = JSON.parse(localStorage.getItem("productos")) || [];
 let carrito = [];
 
-const productosDiv = document.getElementById("productos");
+const contenedor = document.getElementById("productos");
 const listaCarrito = document.getElementById("listaCarrito");
 const totalSpan = document.getElementById("total");
+const buscador = document.getElementById("buscador");
 
-/* =====================
-   CARGAR PRODUCTOS
-===================== */
-fetch("productos.csv")
-  .then(res => res.text())
-  .then(data => {
-    const filas = data.split("\n");
+// ============================
+// MOSTRAR PRODUCTOS
+// ============================
 
-    filas.slice(1).forEach(fila => {
-      const [nombre, precio, imagen, categoria] = fila.split(",");
+function mostrarProductos(lista) {
+    contenedor.innerHTML = "";
 
-      const producto = {
-        nombre,
-        precio: Number(precio),
-        imagen,
-        categoria
-      };
-
-      mostrarProducto(producto);
+    lista.forEach((producto, index) => {
+        contenedor.innerHTML += `
+            <div class="producto">
+                <img src="img/${producto.imagen}" alt="${producto.nombre}">
+                <h3>${producto.nombre}</h3>
+                <p>$${Number(producto.precio)}</p>
+                <button onclick="agregarCarrito(${index})">Agregar</button>
+            </div>
+        `;
     });
-  });
-
-function mostrarProducto(producto) {
-  const card = document.createElement("div");
-  card.className = "producto";
-
-  card.innerHTML = `
-    <img src="img/${producto.imagen}" alt="${producto.nombre}">
-    <h3>${producto.nombre}</h3>
-    <p>$${producto.precio}</p>
-    <button>Agregar</button>
-  `;
-
-  const boton = card.querySelector("button");
-  boton.onclick = () => agregarAlCarrito(producto);
-
-  productosDiv.appendChild(card);
 }
 
-/* =====================
-   CARRITO
-===================== */
-function agregarAlCarrito(producto) {
-  carrito.push(producto);
-  actualizarCarrito();
+mostrarProductos(productos);
+
+// ============================
+// AGREGAR AL CARRITO
+// ============================
+
+function agregarCarrito(index) {
+    carrito.push(productos[index]);
+    actualizarCarrito();
 }
+
+// ============================
+// ACTUALIZAR CARRITO
+// ============================
 
 function actualizarCarrito() {
-  listaCarrito.innerHTML = "";
-  let total = 0;
+    listaCarrito.innerHTML = "";
+    let total = 0;
 
-  carrito.forEach((prod, index) => {
-    const li = document.createElement("li");
-    li.innerHTML = `
-      ${prod.nombre} - $${prod.precio}
-      <button onclick="eliminar(${index})">❌</button>
-    `;
-    listaCarrito.appendChild(li);
-    total += prod.precio;
-  });
+    carrito.forEach((producto) => {
+        listaCarrito.innerHTML += `
+            <li>${producto.nombre} - $${Number(producto.precio)}</li>
+        `;
+        total += Number(producto.precio);
+    });
 
-  totalSpan.textContent = total;
+    totalSpan.textContent = total;
 }
 
-function eliminar(index) {
-  carrito.splice(index, 1);
-  actualizarCarrito();
+// ============================
+// VACIAR CARRITO
+// ============================
+
+document.getElementById("vaciar").addEventListener("click", () => {
+    carrito = [];
+    actualizarCarrito();
+});
+
+// ============================
+// FILTRAR POR CATEGORÍA
+// ============================
+
+function filtrarCategoria(categoria) {
+    if (categoria === "todas") {
+        mostrarProductos(productos);
+    } else {
+        const filtrados = productos.filter(
+            p => p.categoria === categoria
+        );
+        mostrarProductos(filtrados);
+    }
 }
 
-function vaciarCarrito() {
-  carrito = [];
-  actualizarCarrito();
-}
+// ============================
+// BUSCADOR
+// ============================
+
+buscador.addEventListener("input", () => {
+    const texto = buscador.value.toLowerCase();
+
+    const filtrados = productos.filter(producto =>
+        producto.nombre.toLowerCase().includes(texto)
+    );
+
+    mostrarProductos(filtrados);
+});
