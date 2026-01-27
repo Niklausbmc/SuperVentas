@@ -40,7 +40,7 @@ function mostrarProductos() {
                 <img src="${p.imagen}">
                 <h3>${p.nombre}</h3>
                 <p>S/ ${p.precio}</p>
-                onclick="agregarAlCarrito(${p.id})"
+               <button onclick="agregarAlCarrito(${p.id})">Agregar</button>
             </div>
         `;
     });
@@ -189,11 +189,12 @@ function mostrarProductosFiltrados(lista) {
                 <img src="${p.imagen}">
                 <h3>${p.nombre}</h3>
                 <p>S/ ${p.precio}</p>
-                onclick="agregarAlCarrito(${p.id})"
+                <button onclick="agregarAlCarrito(${p.id})">Agregar</button>
             </div>
         `;
     });
 }
+
 
 
 
