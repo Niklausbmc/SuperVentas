@@ -71,49 +71,60 @@ setTimeout(() => {
 // =================== CARRITO ===================
 function mostrarCarrito() {
     listaCarrito.innerHTML = "";
-    let total = 0;
 
-    carrito.forEach(p => {
-        total += p.precio * p.cantidad;
+    if (carrito.length === 0) {
+        listaCarrito.innerHTML = "<p>🛒 Carrito vacío</p>";
+        totalHTML.textContent = "0";
+        contador.textContent = "0";
+        return;
+    }
+
+    let total = 0;
+    let cantidadTotal = 0;
+
+    carrito.forEach(producto => {
+        const subtotal = producto.precio * producto.cantidad;
+        total += subtotal;
+        cantidadTotal += producto.cantidad;
 
         listaCarrito.innerHTML += `
             <div class="item-carrito">
-                <strong>${p.nombre}</strong>
+                <strong>${producto.nombre}</strong><br>
+                S/ ${producto.precio} x ${producto.cantidad} = 
+                <b>S/ ${subtotal}</b>
 
                 <div class="cantidad">
-                    <button onclick="restar(${p.id})">−</button>
-                    <span>${p.cantidad}</span>
-                    <button onclick="sumar(${p.id})">+</button>
+                    <button onclick="disminuir(${producto.id})">−</button>
+                    <span>${producto.cantidad}</span>
+                    <button onclick="aumentar(${producto.id})">+</button>
                 </div>
-
-                <p>S/ ${p.precio * p.cantidad}</p>
             </div>
         `;
     });
 
     totalHTML.textContent = total;
+    contador.textContent = cantidadTotal;
 }
 
 // =================== + / - ===================
-function sumar(id) {
-    const p = carrito.find(p => p.id === id);
-    p.cantidad++;
+function aumentar(id) {
+    const producto = carrito.find(p => p.id === id);
+    producto.cantidad++;
     guardarCarrito();
     mostrarCarrito();
-    actualizarContador();
 }
 
-function restar(id) {
-    const p = carrito.find(p => p.id === id);
-    p.cantidad--;
+function disminuir(id) {
+    const producto = carrito.find(p => p.id === id);
 
-    if (p.cantidad <= 0) {
-        carrito = carrito.filter(x => x.id !== id);
+    if (producto.cantidad > 1) {
+        producto.cantidad--;
+    } else {
+        carrito = carrito.filter(p => p.id !== id);
     }
 
     guardarCarrito();
     mostrarCarrito();
-    actualizarContador();
 }
 
 // =================== UTILIDADES ===================
@@ -177,6 +188,7 @@ function mostrarProductosFiltrados(lista) {
         `;
     });
 }
+
 
 
 
