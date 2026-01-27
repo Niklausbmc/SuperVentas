@@ -89,22 +89,26 @@ function finalizarCompra() {
         return;
     }
 
-    let mensaje = "🧾 RESUMEN DE COMPRA\n\n";
+    let mensaje = "🧾 *BOLETA DE COMPRA*%0A%0A";
 
     carrito.forEach(p => {
-        mensaje += `${p.nombre} x ${p.cantidad} = $${p.precio * p.cantidad}\n`;
+        mensaje += `• ${p.nombre} x ${p.cantidad} = $${p.precio * p.cantidad}%0A`;
     });
 
-    mensaje += "\nTOTAL: $" + carrito.reduce(
+    let total = carrito.reduce(
         (sum, p) => sum + p.precio * p.cantidad,
         0
     );
 
-    alert(mensaje);
+    mensaje += `%0A💰 *TOTAL: $${total}*`;
 
-    carrito = [];
-    localStorage.removeItem("carrito");
-    mostrarCarrito();
+    // 👉 TU NÚMERO DE WHATSAPP (cámbialo)
+    let telefono = "5355030439";
+
+    let url = `https://wa.me/${telefono}?text=${mensaje}`;
+
+    window.open(url, "_blank");
 }
 mostrarCarrito();
+
 
