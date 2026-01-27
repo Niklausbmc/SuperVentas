@@ -21,42 +21,56 @@
 </div>
 
 <!-- MODAL -->
-<div id="modal-carrito">
-  <div class="modal">
+<div id="modalCarrito" class="modal">
+
+  <div class="boleta">
+
     <h2>🧾 Boleta de compra</h2>
 
-    <div id="lista-carrito"></div>
+    <div id="listaCarrito"></div>
 
-    <h3>Total: S/ <span id="total">0</span></h3>
+    <p class="total">
+      Total: S/ <span id="total">0</span>
+    </p>
 
-    <button class="btn verde" onclick="comprarWhatsApp()">Finalizar compra</button>
-    <button class="btn rojo" onclick="cerrarCarrito()">Cerrar</button>
+    <!-- MÉTODOS DE PAGO -->
+    <div class="pagos">
+      <h3>💳 Método de pago</h3>
+
+      <label>
+        <input type="radio" name="pago" value="Yape">
+        Yape
+      </label>
+
+      <label>
+        <input type="radio" name="pago" value="Plin">
+        Plin
+      </label>
+
+      <label>
+        <input type="radio" name="pago" value="Transferencia">
+        Transferencia
+      </label>
+
+      <label>
+        <input type="radio" name="pago" value="Efectivo">
+        Efectivo
+      </label>
+    </div>
+
+    <button class="btn-finalizar" onclick="finalizarCompra()">
+      Finalizar compra
+    </button>
+
+    <button class="btn-cerrar" onclick="cerrarCarrito()">
+      Cerrar
+    </button>
+
   </div>
 </div>
-<div class="pagos">
-  <h4>Método de pago</h4>
 
-  <label>
-    <input type="radio" name="pago" value="Yape" checked>
-    📱 Yape
-  </label>
-
-  <label>
-    <input type="radio" name="pago" value="Plin">
-    💜 Plin
-  </label>
-
-  <label>
-    <input type="radio" name="pago" value="Transferencia">
-    🏦 Transferencia
-  </label>
-
-  <label>
-    <input type="radio" name="pago" value="Entrega">
-    🚚 Pago contra entrega
-  </label>
-</div>
 <script src="script.js"></script>
 </body>
 </html>
+
 
