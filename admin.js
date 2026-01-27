@@ -1,76 +1,64 @@
-function login() {
-  const pass = document.getElementById("password").value;
-
-  if (pass === "1234") {
-    document.getElementById("panelAdmin").style.display = "block";
-  } else {
-    alert("Contraseña incorrecta");
-  }
-}
-
-// =============================
-// PRODUCTOS
-// =============================
-
-let productos = JSON.parse(localStorage.getItem("productosAdmin")) || [];
-const tabla = document.getElementById("tablaProductos");
-
-function mostrarProductos() {
-  if (!tabla) return;
-
-  tabla.innerHTML = "";
-
-  productos.forEach(p => {
-    const fila = document.createElement("tr");
-
-    fila.innerHTML = `
-      <td>${p.nombre}</td>
-      <td>$${p.precio}</td>
-      <td>${p.categoria}</td>
-      <td>${p.imagen}</td>
-    `;
-
-    tabla.appendChild(fila);
-  });
-}
-
-document.getElementById("agregar")?.addEventListener("click", () => {
-  const nombre = document.getElementById("nombre").value;
-  const precio = document.getElementById("precio").value;
-  const categoria = document.getElementById("categoria").value;
-  const imagen = document.getElementById("imagen").value;
-
-  if (!nombre || !precio || !categoria || !imagen) {
-    alert("Completa todos los campos");
-    return;
-  }
-
-  productos.push({
-    nombre,
-    precio: Number(precio),
-    categoria,
-    imagen
-  });
-
-  localStorage.setItem("productosAdmin", JSON.stringify(productos));
-  mostrarProductos();
-
-  document.getElementById("nombre").value = "";
-  document.getElementById("precio").value = "";
-  document.getElementById("categoria").value = "";
-  document.getElementById("imagen").value = "";
-});
-
-mostrarProductos();
-
-function login() {
-    const usuario = document.getElementById("usuario").value;
-    const clave = document.getElementById("clave").value;
-
-    if (usuario === "admin" && clave === "1234") {
-        localStorage.setItem("adminLogueado", "true");
-        window.location.href = "panel.html";
-    } else {
-        alert("Usuario o contraseña incorrectos");
+// 🔐 protección
+if (window.location.pathname.includes("panel.html")) {
+    if (localStorage.getItem("adminLogueado") !== "true") {
+        window.location.href = "admin.html";
     }
 }
+
+// cerrar sesión
+function cerrarSesion() {
+    localStorage.removeItem("adminLogueado");
+    window.location.href = "admin.html";
+}
+
+// productos
+let productos = JSON.parse(localStorage.getItem("productosAdmin")) || [];
+
+function agregarProducto() {
+    const nombre = document.getElementById("nombre").value;
+    const precio = document.getElementById("precio").value;
+    const imagen = document.getElementById("imagen").value;
+
+    if (!nombre || !precio || !imagen) {
+        alert("Completa todos los campos");
+        return;
+    }
+
+    productos.push({
+        nombre,
+        precio,
+        imagen
+    });
+
+    localStorage.setItem("productosAdmin", JSON.stringify(productos));
+
+    mostrarProductos();
+
+    document.getElementById("nombre").value = "";
+    document.getElementById("precio").value = "";
+    document.getElementById("imagen").value = "";
+}
+
+function mostrarProductos() {
+    const lista = document.getElementById("listaProductos");
+    if (!lista) return;
+
+    lista.innerHTML = "";
+
+    productos.forEach((p, i) => {
+        lista.innerHTML += `
+            <li>
+                ${p.nombre} - $${p.precio}
+                <button onclick="eliminarProducto(${i})">❌</button>
+            </li>
+        `;
+    });
+}
+
+function eliminarProducto(index) {
+    productos.splice(index, 1);
+    localStorage.setItem("productosAdmin", JSON.stringify(productos));
+    mostrarProductos();
+}
+
+mostrarProductos();
