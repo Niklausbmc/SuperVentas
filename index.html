@@ -5,6 +5,23 @@
     <title>Tienda Online</title>
     <link rel="stylesheet" href="style.css">
 </head>
+<div id="modal-carrito" class="modal">
+  <div class="modal-contenido">
+    <h2>🧾 Boleta de compra</h2>
+
+    <div id="lista-carrito"></div>
+
+    <h3>Total: S/ <span id="total">0</span></h3>
+
+    <button onclick="comprarWhatsApp()" class="btn-whatsapp">
+      🟢 Comprar por WhatsApp
+    </button>
+
+    <button onclick="cerrarCarrito()" class="btn-cerrar">
+      ❌ Cerrar
+    </button>
+  </div>
+</div>    
 <body>
 
 <header class="top">
@@ -29,5 +46,6 @@
 <script src="script.js" defer></script>
 </body>
 </html>
+
 
 
