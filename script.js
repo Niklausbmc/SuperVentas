@@ -165,28 +165,36 @@ document.getElementById("confirmarCompra").addEventListener("click", () => {
 
 // CONFIRMAR COMPRA
 document.getElementById("confirmarCompra").addEventListener("click", () => {
+  const telefono = "5355030439";
   const nombre = document.getElementById("nombreCliente").value;
   const correo = document.getElementById("correoCliente").value;
   const direccion = document.getElementById("direccionCliente").value;
 
   if (nombre === "" || correo === "" || direccion === "") {
-    alert("Por favor completa todos los datos");
+    alert("Completa todos los datos");
     return;
   }
 
-  alert(
-    "✅ Compra realizada con éxito\n\n" +
-    "Cliente: " + nombre + "\n" +
-    "Correo: " + correo + "\n" +
-    "Dirección: " + direccion + "\n\n" +
-    "¡Gracias por tu compra!"
-  );
+  let mensaje = "🛒 *Nuevo pedido*%0A%0A";
+  mensaje += "*Cliente:* " + nombre + "%0A";
+  mensaje += "*Correo:* " + correo + "%0A";
+  mensaje += "*Dirección:* " + direccion + "%0A%0A";
+  mensaje += "*Productos:*%0A";
 
-  // Vaciar carrito
+  carrito.forEach(item => {
+    mensaje += "- " + item.nombre + " x" + item.cantidad +
+               " = $" + (item.precio * item.cantidad) + "%0A";
+  });
+
+  mensaje += "%0A*Total:* $" + total;
+
+  const telefono = "51999999999"; // 👈 CAMBIA TU NÚMERO AQUÍ
+
+  const url = `https://wa.me/${telefono}?text=${mensaje}`;
+  window.open(url, "_blank");
+
   carrito = [];
   total = 0;
   actualizarCarrito();
-
-  // Ocultar checkout
   document.getElementById("checkout").style.display = "none";
 });
