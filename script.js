@@ -1,4 +1,4 @@
-let carrito = [];
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 fetch("productos.json")
     .then(res => res.json())
@@ -79,4 +79,5 @@ function vaciarCarrito() {
     carrito = [];
     mostrarCarrito();
 }
+
 
