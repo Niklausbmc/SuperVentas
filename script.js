@@ -1,28 +1,32 @@
-const contenedor = document.getElementById("productos");
+let carrito = [];
+let total = 0;
 
-let productos = JSON.parse(localStorage.getItem("productos")) || [];
+const productos = JSON.parse(localStorage.getItem("productos")) || [];
+
+const contenedor = document.getElementById("productos");
 
 function mostrarProductos() {
   contenedor.innerHTML = "";
 
-  if (productos.length === 0) {
-    contenedor.innerHTML = "<p>No hay productos disponibles</p>";
-    return;
-  }
-
-  productos.forEach((p) => {
-    const div = document.createElement("div");
-    div.className = "producto";
-
-    div.innerHTML = `
-      <img src="${p.imagen}" alt="${p.nombre}">
-      <h3>${p.nombre}</h3>
-      <p>$${p.precio}</p>
-      <button>Agregar</button>
+  productos.forEach((p, index) => {
+    contenedor.innerHTML += `
+      <div class="producto">
+        <img src="img/${p.imagen}">
+        <h3>${p.nombre}</h3>
+        <p>$${p.precio}</p>
+        <button onclick="agregarAlCarrito(${index})">
+          Agregar
+        </button>
+      </div>
     `;
-
-    contenedor.appendChild(div);
   });
+}
+
+function agregarAlCarrito(index) {
+  carrito.push(productos[index]);
+  total += Number(productos[index].precio);
+
+  document.getElementById("total").innerText = total;
 }
 
 mostrarProductos();
