@@ -158,3 +158,22 @@ header input {
   75% { transform: translateX(-5px); }
   100% { transform: translateX(0); }
 }
+
+.pagos {
+  margin-top: 15px;
+}
+
+.pagos h4 {
+  margin-bottom: 10px;
+}
+
+.pagos label {
+  display: block;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.pagos label:hover {
+  background: #f1f1f1;
+}
