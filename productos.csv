@@ -1,4 +1,5 @@
 id,nombre,precio,stock,categoria,imagen
-1,Ventilador,22000,10,Electrodomesticos,.img/ventilador.jpg
+1,Ventilador,22000,10,Electrodomesticos,img/ventilador.jpg
+
 
 
