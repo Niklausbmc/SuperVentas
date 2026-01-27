@@ -1,4 +1,4 @@
-let carrito = [];
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 // =====================
 // PRODUCTOS
@@ -139,3 +139,4 @@ function comprarWhatsApp() {
     "_blank"
   );
 }
+
