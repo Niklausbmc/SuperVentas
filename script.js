@@ -1,3 +1,4 @@
+document.addEventListener("DOMContentLoaded" , () => {
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 fetch("productos.json")
@@ -135,6 +136,7 @@ function cerrarBoleta() {
     document.getElementById("boleta").classList.add("oculto");
 }
 mostrarCarrito();
+
 
 
 
