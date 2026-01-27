@@ -190,3 +190,91 @@ h1 {
     margin-top: 10px;
     font-size: 16px;
 }
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+}
+
+.top {
+    background: white;
+    padding: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.top input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+}
+
+.categorias {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+    padding: 10px;
+    background: white;
+}
+
+.categorias span {
+    background: #eee;
+    padding: 6px 14px;
+    border-radius: 20px;
+    white-space: nowrap;
+    font-size: 14px;
+}
+
+.grid-productos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 10px;
+}
+
+.producto {
+    background: white;
+    border-radius: 10px;
+    padding: 8px;
+    font-size: 14px;
+}
+
+.producto img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.producto h4 {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.precio {
+    color: red;
+    font-weight: bold;
+}
+
+.producto button {
+    width: 100%;
+    margin-top: 5px;
+    padding: 8px;
+    border: none;
+    border-radius: 6px;
+    background: #ff2c55;
+    color: white;
+    cursor: pointer;
+}
+
+.carrito-flotante {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: black;
+    color: white;
+    padding: 15px;
+    border-radius: 50%;
+    font-size: 18px;
+}
