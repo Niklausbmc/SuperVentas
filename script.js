@@ -21,20 +21,37 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   ];
 
+  let carrito = [];
+
   const contenedor = document.getElementById("productos");
+  const contador = document.getElementById("contador");
 
-  productos.forEach(producto => {
-    const div = document.createElement("div");
-    div.className = "producto";
+  function mostrarProductos() {
+    contenedor.innerHTML = "";
 
-    div.innerHTML = `
-      <img src="${producto.imagen}">
-      <h3>${producto.nombre}</h3>
-      <p>S/ ${producto.precio}</p>
-      <button>Agregar</button>
-    `;
+    productos.forEach(producto => {
+      const div = document.createElement("div");
+      div.className = "producto";
 
-    contenedor.appendChild(div);
-  });
+      div.innerHTML = `
+        <img src="${producto.imagen}">
+        <h3>${producto.nombre}</h3>
+        <p>S/ ${producto.precio}</p>
+        <button onclick="agregarAlCarrito(${producto.id})">
+          Agregar al carrito
+        </button>
+      `;
+
+      contenedor.appendChild(div);
+    });
+  }
+
+  window.agregarAlCarrito = function(id) {
+    const producto = productos.find(p => p.id === id);
+    carrito.push(producto);
+    contador.textContent = carrito.length;
+  };
+
+  mostrarProductos();
 
 });
