@@ -11,42 +11,49 @@ body {
 
 /* HEADER */
 .top {
-    background: white;
-    padding: 12px;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 10;
+  background: #131921;
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .top h2 {
-    font-size: 18px;
+  font-size: 22px;
 }
 
 .top input {
-    flex: 1;
-    padding: 8px;
-    border-radius: 20px;
-    border: 1px solid #ccc;
+  width: 50%;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
 }
 
 /* CATEGORIAS */
-.categories {
-    display: flex;
-    gap: 10px;
-    padding: 10px;
-    overflow-x: auto;
-    background: white;
+.categorias {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+  overflow-x: auto;
 }
 
-.categories span {
-    background: #f1f1f1;
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 14px;
-    white-space: nowrap;
+.categorias span {
+  background: white;
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  white-space: nowrap;
+}
+
+.categorias span:hover {
+  background: #0d6efd;
+  color: white;
 }
 
 /* PRODUCTOS */
@@ -231,17 +238,84 @@ body {
 
 /* ================== CARRITO FLOTANTE ================== */
 .carrito-flotante {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    background: #2563eb;
-    color: white;
-    width: 65px;
-    height: 65px;
-    border-radius: 50%;
-    font-size: 22px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background: #0d6efd;
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.carrito-flotante span {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: red;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  font-size: 13px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.12);
+  display: flex;
+  flex-direction: column;
+}
+
+.card img {
+  height: 200px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.card h3 {
+  font-size: 17px;
+  margin-bottom: 5px;
+}
+
+.precio {
+  color: #e53935;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.card button {
+  margin-top: auto;
+  background: #3483fa;
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.card button:hover {
+  background: #2968c8;
+}
+
+@media (max-width: 600px) {
+  .top input {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
