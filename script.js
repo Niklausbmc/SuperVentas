@@ -20,6 +20,9 @@ fetch("productos.csv")
       });
     });
 
+    mostrarProductos();
+  });
+
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 const contenedor = document.getElementById("productos");
@@ -167,4 +170,5 @@ function mostrarProductosFiltrados(lista) {
         `;
     });
 }
+
 
