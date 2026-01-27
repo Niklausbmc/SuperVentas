@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel Administrativo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>📊 Panel Administrativo</h2>
+
+<button onclick="cerrarSesion()">Cerrar sesión</button>
+
+<hr>
+
+<h3>Agregar producto</h3>
+
+<input type="text" id="nombre" placeholder="Nombre del producto"><br><br>
+<input type="number" id="precio" placeholder="Precio"><br><br>
+<input type="text" id="imagen" placeholder="imagen.jpg"><br><br>
+
+<button onclick="agregarProducto()">Agregar</button>
+
+<h3>Productos</h3>
+<ul id="listaProductos"></ul>
+
+<script src="admin.js"></script>
+</body>
+</html>
