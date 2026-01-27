@@ -1,9 +1,24 @@
 // =================== PRODUCTOS ===================
-const productos = [
-    { id: 1, nombre: "Ventilador", precio: 22000, imagen: "img/ventilador.jpg" },
-    { id: 2, nombre: "Audifonos", precio: 18000, imagen: "img/audifonos.jpg" },
-    { id: 3, nombre: "Zapatos", precio: 35000, imagen: "img/zapatos.jpg" }
-];
+let productos = [];
+fetch("productos.csv")
+  .then(res => res.text())
+  .then(data => {
+    const filas = data.split("\n").slice(1);
+
+    filas.forEach(fila => {
+      if (fila.trim() === "") return;
+
+      const [id, nombre, precio, stock, categoria, imagen] = fila.split(",");
+
+      productos.push({
+        id: Number(id),
+        nombre: nombre,
+        precio: Number(precio),
+        stock: Number(stock),
+        categoria: categoria,
+        imagen: imagen
+      });
+    });
 
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
@@ -152,3 +167,4 @@ function mostrarProductosFiltrados(lista) {
         `;
     });
 }
+
