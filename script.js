@@ -1,4 +1,4 @@
-let carrito = [];
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 let total = 0;
 
 fetch("productos.csv")
@@ -31,7 +31,13 @@ fetch("productos.csv")
 
       contenedor.appendChild(div);
     }
+
+    mostrarCarrito();
   });
+
+function guardarCarrito() {
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+}
 
 function agregarCarrito(id, nombre, precio) {
   const producto = carrito.find(p => p.id === id);
@@ -47,6 +53,7 @@ function agregarCarrito(id, nombre, precio) {
     });
   }
 
+  guardarCarrito();
   mostrarCarrito();
 }
 
@@ -69,6 +76,6 @@ function mostrarCarrito() {
 
 document.getElementById("vaciar").addEventListener("click", () => {
   carrito = [];
-  total = 0;
+  localStorage.removeItem("carrito");
   mostrarCarrito();
 });
