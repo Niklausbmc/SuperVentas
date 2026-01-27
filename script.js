@@ -162,3 +162,31 @@ document.getElementById("confirmarCompra").addEventListener("click", () => {
 
   document.getElementById("checkout").style.display = "none";
 });
+
+// CONFIRMAR COMPRA
+document.getElementById("confirmarCompra").addEventListener("click", () => {
+  const nombre = document.getElementById("nombreCliente").value;
+  const correo = document.getElementById("correoCliente").value;
+  const direccion = document.getElementById("direccionCliente").value;
+
+  if (nombre === "" || correo === "" || direccion === "") {
+    alert("Por favor completa todos los datos");
+    return;
+  }
+
+  alert(
+    "✅ Compra realizada con éxito\n\n" +
+    "Cliente: " + nombre + "\n" +
+    "Correo: " + correo + "\n" +
+    "Dirección: " + direccion + "\n\n" +
+    "¡Gracias por tu compra!"
+  );
+
+  // Vaciar carrito
+  carrito = [];
+  total = 0;
+  actualizarCarrito();
+
+  // Ocultar checkout
+  document.getElementById("checkout").style.display = "none";
+});
