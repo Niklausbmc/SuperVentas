@@ -109,6 +109,32 @@ function finalizarCompra() {
 
     window.open(url, "_blank");
 }
+
+function mostrarBoleta() {
+    document.getElementById("boleta").classList.remove("oculto");
+
+    let lista = document.getElementById("boleta-productos");
+    let totalSpan = document.getElementById("boleta-total");
+
+    lista.innerHTML = "";
+    let total = 0;
+
+    carrito.forEach(p => {
+        let subtotal = p.precio * p.cantidad;
+        total += subtotal;
+
+        lista.innerHTML += `
+            <p>${p.nombre} x ${p.cantidad} = $${subtotal}</p>
+        `;
+    });
+
+    totalSpan.textContent = total;
+}
+
+function cerrarBoleta() {
+    document.getElementById("boleta").classList.add("oculto");
+}
 mostrarCarrito();
+
 
 
