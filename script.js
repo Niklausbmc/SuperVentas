@@ -1,21 +1,8 @@
 let carrito = [];
 
-fetch("productos.csv")
-    .then(res => res.text())
-    .then(texto => {
-        const lineas = texto.split("\n").slice(1);
-
-        const productos = lineas.map(linea => {
-            const datos = linea.replace("\r", "").split(",");
-
-            return {
-                id: datos[0].trim(),
-                nombre: datos[1].trim(),
-                precio: Number(datos[2].trim()),
-                imagen: datos[3].trim()
-            };
-        });
-
+fetch("productos.json")
+    .then(res => res.json())
+    .then(productos => {
         mostrarProductos(productos);
     });
 
@@ -38,7 +25,7 @@ function mostrarProductos(productos) {
 }
 
 function agregarCarrito(id, nombre, precio) {
-    const existe = carrito.find(p => p.id === id);
+    const existe = carrito.find(p => p.id == id);
 
     if (existe) {
         existe.cantidad++;
@@ -70,12 +57,12 @@ function mostrarCarrito() {
 }
 
 function cambiarCantidad(id, cambio) {
-    const producto = carrito.find(p => p.id === id);
+    const producto = carrito.find(p => p.id == id);
 
     producto.cantidad += cambio;
 
     if (producto.cantidad <= 0) {
-        carrito = carrito.filter(p => p.id !== id);
+        carrito = carrito.filter(p => p.id != id);
     }
 
     mostrarCarrito();
