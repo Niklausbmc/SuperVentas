@@ -8,7 +8,7 @@ fetch("productos.csv")
     filas.forEach(fila => {
       if (fila.trim() === "") return;
 
-      const [id, nombre, precio, stock, categoria, imagen] = fila.split(",");
+      const [id, nombre, precio, stock, categoria, imagen] = fila.split(";");
 
       productos.push({
         id: Number(id),
@@ -169,6 +169,7 @@ function mostrarProductosFiltrados(lista) {
         `;
     });
 }
+
 
 
 
