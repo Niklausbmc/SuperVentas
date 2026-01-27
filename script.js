@@ -57,6 +57,12 @@ function agregar(id){
   mostrarCarrito();
 }
 
+const boton = document.querySelector(".carrito-flotante");
+boton.classList.add("shake");
+
+setTimeout(() => {
+  boton.classList.remove("shake");
+}, 400);
 // ================= CARRITO =================
 function mostrarCarrito(){
   listaCarrito.innerHTML = "";
@@ -128,4 +134,5 @@ function comprarWhatsApp(){
   msg += `Total: S/ ${totalHTML.textContent}`;
   window.open(`https://wa.me/51999999999?text=${msg}`);
 }
+
 
