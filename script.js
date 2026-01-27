@@ -43,9 +43,14 @@ function agregarCarrito(id, nombre, precio) {
 
 function mostrarCarrito() {
     const div = document.getElementById("carrito");
+    const totalSpan = document.getElementById("total");
+
     div.innerHTML = "";
+    let total = 0;
 
     carrito.forEach(p => {
+        total += p.precio * p.cantidad;
+
         div.innerHTML += `
             <div>
                 ${p.nombre} - $${p.precio} x ${p.cantidad}
@@ -54,6 +59,8 @@ function mostrarCarrito() {
             </div>
         `;
     });
+
+    totalSpan.textContent = total;
 }
 
 function cambiarCantidad(id, cambio) {
@@ -72,3 +79,4 @@ function vaciarCarrito() {
     carrito = [];
     mostrarCarrito();
 }
+
