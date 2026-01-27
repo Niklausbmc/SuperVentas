@@ -100,9 +100,15 @@ function mostrarCarrito() {
 
         listaCarrito.innerHTML += `
             <div class="item-carrito">
-                <strong>${p.nombre}</strong><br>
-                Cantidad: ${p.cantidad} <br>
-                Precio: S/ ${p.precio * p.cantidad}
+                <strong>${p.nombre}</strong>
+
+                <div class="cantidad">
+                    <button onclick="restar(${p.id})">−</button>
+                    <span>${p.cantidad}</span>
+                    <button onclick="sumar(${p.id})">+</button>
+                </div>
+
+                <p>S/ ${p.precio * p.cantidad}</p>
             </div>
         `;
     });
@@ -132,3 +138,25 @@ function comprarWhatsApp() {
 // ================== INICIAR ==================
 mostrarProductos();
 actualizarContador();
+}
+
+function sumar(id) {
+    const producto = carrito.find(p => p.id === id);
+    producto.cantidad++;
+    guardarCarrito();
+    mostrarCarrito();
+    actualizarContador();
+}
+
+function restar(id) {
+    const producto = carrito.find(p => p.id === id);
+    producto.cantidad--;
+
+    if (producto.cantidad <= 0) {
+        carrito = carrito.filter(p => p.id !== id);
+    }
+
+    guardarCarrito();
+    mostrarCarrito();
+    actualizarContador();
+}
