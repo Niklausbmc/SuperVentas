@@ -83,4 +83,28 @@ function vaciarCarrito() {
     mostrarCarrito();
 }
 
+function finalizarCompra() {
+    if (carrito.length === 0) {
+        alert("El carrito está vacío");
+        return;
+    }
+
+    let mensaje = "🧾 RESUMEN DE COMPRA\n\n";
+
+    carrito.forEach(p => {
+        mensaje += `${p.nombre} x ${p.cantidad} = $${p.precio * p.cantidad}\n`;
+    });
+
+    mensaje += "\nTOTAL: $" + carrito.reduce(
+        (sum, p) => sum + p.precio * p.cantidad,
+        0
+    );
+
+    alert(mensaje);
+
+    carrito = [];
+    localStorage.removeItem("carrito");
+    mostrarCarrito();
+}
 mostrarCarrito();
+
