@@ -39,8 +39,6 @@ function agregarCarrito(id, nombre, precio) {
     }
     localStorage.setItem("carrito", JSON.stringify(carrito));
 mostrarCarrito();
-
-    mostrarCarrito();
 }
 
 function mostrarCarrito() {
@@ -84,3 +82,4 @@ function vaciarCarrito() {
     localStorage.removeItem("carrito");
     mostrarCarrito();
 }
+
