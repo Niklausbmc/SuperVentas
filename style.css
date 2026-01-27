@@ -262,3 +262,31 @@ body {
     100% { transform: scale(1); }
 }
 
+/* ===== ANIMACIÓN MODAL ===== */
+.modal {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    animation: fondoFade 0.3s ease;
+}
+
+@keyframes fondoFade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* boleta animada */
+.modal-contenido {
+    animation: boletaEntrada 0.4s ease;
+}
+
+@keyframes boletaEntrada {
+    from {
+        transform: translateY(40px) scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
