@@ -3,18 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Mi Tienda</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
     <!-- HEADER -->
     <header class="header">
         <h1>🛒 Mi Tienda</h1>
 
-        <input
-            type="text"
-            id="buscador"
+        <input 
+            type="text" 
+            id="buscador" 
             placeholder="Buscar productos..."
         >
 
@@ -31,17 +33,17 @@
         <button onclick="filtrarCategoria('cocina')">Cocina</button>
     </div>
 
-    <!-- CONTENEDOR PRINCIPAL -->
+    <!-- CONTENEDOR -->
     <div class="contenedor">
 
-        <!-- PRODUCTOS -->
+        <!-- TIENDA -->
         <div id="productos" class="tienda"></div>
 
         <!-- CARRITO -->
         <div class="carrito">
             <h2>Carrito</h2>
 
-            <ul id="lista-carrito"></ul>
+            <ul id="listaCarrito"></ul>
 
             <p><strong>Total: $<span id="total">0</span></strong></p>
 
@@ -49,17 +51,6 @@
             <button id="finalizar">Finalizar compra</button>
         </div>
 
-    </div>
-
-    <!-- CHECKOUT -->
-    <div id="checkout" class="checkout" style="display:none;">
-        <h2>Finalizar compra</h2>
-
-        <input type="text" id="nombreCliente" placeholder="Nombre completo"><br><br>
-        <input type="email" id="correoCliente" placeholder="Correo"><br><br>
-        <input type="text" id="direccionCliente" placeholder="Dirección"><br><br>
-
-        <button id="confirmarCompra">Confirmar compra</button>
     </div>
 
     <!-- SCRIPT -->
