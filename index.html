@@ -1,67 +1,69 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>SuperVentas</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Mi Tienda</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<header>
-  <h1>Mi<span>Tienda</span></h1>
-  <div>🛒 Carrito</div>
-</header>  
-<header class="header">
-  <div class="logo">🛒 SuperVentas</div>
+    <!-- HEADER -->
+    <header class="header">
+        <h1>🛒 Mi Tienda</h1>
 
-  <input 
-    type="text" 
-    id="buscador"
-    placeholder="Buscar productos..."
-  >
+        <input
+            type="text"
+            id="buscador"
+            placeholder="Buscar productos..."
+        >
 
-  <div class="carrito-icono">
-    🧺 <span id="contador">0</span>
-  </div>
-</header>
+        <div class="carrito-icono">
+            🛍️ <span id="contador">0</span>
+        </div>
+    </header>
 
-<div id="categorias" class="categorias">
-  <button onclick="filtrarCategoria('todas')">Todos</button>
-  <button onclick="filtrarCategoria('electrodomesticos')">Electrodomésticos</button>
-  <button onclick="filtrarCategoria('tecnologia')">Tecnología</button>
-  <button onclick="filtrarCategoria('cocina')">Cocina</button>
-</div>
+    <!-- CATEGORÍAS -->
+    <div id="categorias" class="categorias">
+        <button onclick="filtrarCategoria('todas')">Todos</button>
+        <button onclick="filtrarCategoria('electrodomesticos')">Electrodomésticos</button>
+        <button onclick="filtrarCategoria('tecnologia')">Tecnología</button>
+        <button onclick="filtrarCategoria('cocina')">Cocina</button>
+    </div>
 
-<div class="contenedor">
-  <div id="productos" class="tienda"></div>
+    <!-- CONTENEDOR PRINCIPAL -->
+    <div class="contenedor">
 
-  <div class="carrito">
-    <h2>Carrito</h2>
-    <ul id="lista-carrito"></ul>
-    <p><strong>Total: $<span id="total">0</span></strong></p>
-    <button id="vaciar">Vaciar carrito</button>
-    <button id="finalizar">Finalizar compra</button>
-  </div>
-</div>
+        <!-- PRODUCTOS -->
+        <div id="productos" class="tienda"></div>
 
-<div id="checkout" style="display:none;" class="checkout">
-  <h2>Finalizar compra</h2>
+        <!-- CARRITO -->
+        <div class="carrito">
+            <h2>Carrito</h2>
 
-  <input type="text" id="nombreCliente" placeholder="Nombre completo"><br><br>
-  <input type="email" id="correoCliente" placeholder="Correo"><br><br>
-  <input type="text" id="direccionCliente" placeholder="Dirección"><br><br>
+            <ul id="lista-carrito"></ul>
 
-  <button id="confirmarCompra">Confirmar compra</button>
-</div>
-  
-<script src="script.js"></script>
+            <p><strong>Total: $<span id="total">0</span></strong></p>
+
+            <button id="vaciar">Vaciar carrito</button>
+            <button id="finalizar">Finalizar compra</button>
+        </div>
+
+    </div>
+
+    <!-- CHECKOUT -->
+    <div id="checkout" class="checkout" style="display:none;">
+        <h2>Finalizar compra</h2>
+
+        <input type="text" id="nombreCliente" placeholder="Nombre completo"><br><br>
+        <input type="email" id="correoCliente" placeholder="Correo"><br><br>
+        <input type="text" id="direccionCliente" placeholder="Dirección"><br><br>
+
+        <button id="confirmarCompra">Confirmar compra</button>
+    </div>
+
+    <!-- SCRIPT -->
+    <script src="script.js"></script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
