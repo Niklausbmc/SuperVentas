@@ -1,5 +1,6 @@
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 let productos = [];
+let productosFiltrados = [];
 let total = 0;
 
 fetch("productos.csv")
@@ -8,18 +9,19 @@ fetch("productos.csv")
     const filas = data.trim().split("\n");
 
     for (let i = 1; i < filas.length; i++) {
-      const col = filas[i].split(",");
+      const c = filas[i].split(",");
 
       productos.push({
-        id: col[0],
-        nombre: col[1].toLowerCase(),
-        precio: Number(col[2]),
-        categoria: col[4].toLowerCase(),
-        imagen: col[5]
+        id: c[0],
+        nombre: c[1].toLowerCase(),
+        precio: Number(c[2]),
+        categoria: c[4].toLowerCase(),
+        imagen: c[5]
       });
     }
 
-    mostrarProductos(productos);
+    productosFiltrados = productos;
+    mostrarProductos(productosFiltrados);
     mostrarCarrito();
   });
 
@@ -46,17 +48,31 @@ function mostrarProductos(lista) {
   });
 }
 
-/* BUSCADOR */
-document.getElementById("buscador").addEventListener("input", e => {
-  const texto = e.target.value.toLowerCase();
+/* ===== CATEGORÍAS ===== */
 
-  const filtrados = productos.filter(p =>
-    p.nombre.includes(texto) ||
-    p.categoria.includes(texto)
+function filtrarCategoria(cat) {
+  if (cat === "todas") {
+    productosFiltrados = productos;
+  } else {
+    productosFiltrados = productos.filter(p => p.categoria === cat);
+  }
+
+  aplicarBuscador();
+}
+
+/* ===== BUSCADOR ===== */
+
+document.getElementById("buscador").addEventListener("input", aplicarBuscador);
+
+function aplicarBuscador() {
+  const texto = document.getElementById("buscador").value.toLowerCase();
+
+  const resultado = productosFiltrados.filter(p =>
+    p.nombre.includes(texto)
   );
 
-  mostrarProductos(filtrados);
-});
+  mostrarProductos(resultado);
+}
 
 /* ===== CARRITO ===== */
 
