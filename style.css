@@ -2,141 +2,102 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
-  font-family: Arial;
-  background: #eaeded;
+  background: #f2f2f2;
 }
 
-/* ===== HEADER ===== */
-
-.header {
+/* HEADER */
+header {
   background: #131921;
   color: white;
-  padding: 12px 20px;
+  padding: 15px 30px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 20px;
 }
 
-.logo {
+header h1 {
   font-size: 22px;
-  font-weight: bold;
 }
 
-.header input {
-  flex: 1;
-  padding: 10px;
-  border-radius: 4px;
-  border: none;
+header span {
+  color: #f3a847;
 }
 
-.carrito-icono {
-  font-size: 20px;
-  cursor: pointer;
-}
-
-#contador {
-  background: orange;
-  color: black;
-  padding: 2px 6px;
-  border-radius: 50%;
-  font-size: 14px;
-}
-
-/* ===== CATEGORIAS ===== */
-
-.categorias {
-  background: #232f3e;
-  padding: 10px;
-  display: flex;
-  gap: 10px;
-}
-
-.categorias button {
-  background: #37475a;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  cursor: pointer;
-}
-
-.categorias button:hover {
-  background: #485769;
-}
-
-/* ===== CONTENIDO ===== */
-
-.contenedor {
-  display: flex;
-  padding: 20px;
-  gap: 20px;
-}
-
+/* TIENDA */
 .tienda {
-  width: 70%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 20px;
+  padding: 30px;
 }
 
+/* PRODUCTO */
 .producto {
   background: white;
-  padding: 10px;
-  border-radius: 6px;
+  border-radius: 8px;
+  padding: 15px;
   text-align: center;
+  transition: 0.3s;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.producto:hover {
+  transform: translateY(-5px);
 }
 
 .producto img {
   width: 100%;
-  height: 170px;
-  object-fit: cover;
+  height: 180px;
+  object-fit: contain;
+}
+
+.producto h3 {
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+.producto p {
+  font-size: 18px;
+  font-weight: bold;
+  color: #b12704;
 }
 
 .producto button {
-  background: #ffd814;
+  background: #f3a847;
   border: none;
-  padding: 8px;
+  padding: 10px;
   width: 100%;
   cursor: pointer;
   font-weight: bold;
+  border-radius: 5px;
+  margin-top: 10px;
 }
 
 .producto button:hover {
-  background: #f7ca00;
+  background: #ddb347;
 }
 
-/* ===== CARRITO ===== */
-
-.carrito {
-  width: 30%;
+/* LOGIN ADMIN */
+.login-admin {
+  max-width: 300px;
+  margin: 80px auto;
   background: white;
-  padding: 15px;
-  border-radius: 6px;
-}
-
-.carrito button {
-  width: 100%;
-  padding: 10px;
-  background: #d9534f;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-.checkout {
-  background: white;
-  padding: 20px;
+  padding: 25px;
   border-radius: 8px;
-  position: fixed;
-  top: 20%;
-  left: 35%;
-  width: 30%;
-  box-shadow: 0 0 15px rgba(0,0,0,0.3);
-  z-index: 1000;
+  box-shadow: 0 0 10px rgba(0,0,0,.2);
 }
 
-.checkout input {
+.login-admin input {
   width: 100%;
   padding: 10px;
+}
+
+/* PANEL */
+.admin input {
+  padding: 10px;
+  margin: 5px;
 }
