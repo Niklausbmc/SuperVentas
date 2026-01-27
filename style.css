@@ -124,3 +124,19 @@ body {
   border: none;
   cursor: pointer;
 }
+.checkout {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  position: fixed;
+  top: 20%;
+  left: 35%;
+  width: 30%;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  z-index: 1000;
+}
+
+.checkout input {
+  width: 100%;
+  padding: 10px;
+}
