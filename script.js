@@ -125,3 +125,30 @@ function comprarWhatsApp() {
 mostrarProductos();
 actualizarContador();
 
+// =================== BUSCADOR ===================
+const buscador = document.getElementById("buscador");
+
+buscador.addEventListener("keyup", () => {
+    const texto = buscador.value.toLowerCase();
+
+    const filtrados = productos.filter(p =>
+        p.nombre.toLowerCase().includes(texto)
+    );
+
+    mostrarProductosFiltrados(filtrados);
+});
+
+function mostrarProductosFiltrados(lista) {
+    contenedor.innerHTML = "";
+
+    lista.forEach(p => {
+        contenedor.innerHTML += `
+            <div class="producto">
+                <img src="${p.imagen}">
+                <h3>${p.nombre}</h3>
+                <p>S/ ${p.precio}</p>
+                <button onclick="agregar(${p.id})">Agregar</button>
+            </div>
+        `;
+    });
+}
