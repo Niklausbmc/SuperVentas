@@ -62,3 +62,15 @@ document.getElementById("agregar")?.addEventListener("click", () => {
 });
 
 mostrarProductos();
+
+function login() {
+    const usuario = document.getElementById("usuario").value;
+    const clave = document.getElementById("clave").value;
+
+    if (usuario === "admin" && clave === "1234") {
+        localStorage.setItem("adminLogueado", "true");
+        window.location.href = "panel.html";
+    } else {
+        alert("Usuario o contraseña incorrectos");
+    }
+}
