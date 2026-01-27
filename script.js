@@ -1,12 +1,30 @@
 document.addEventListener("DOMContentLoaded", () => {
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-fetch("productos.json")
-    .then(res => res.json())
-    .then(productos => {
-        mostrarProductos(productos);
-    });
+const productos = [
+  {
+    id: 1,
+    nombre: "Ventilador",
+    precio: 22000,
+    imagen: "ventilador.jpg"
+  },
+  {
+    id: 2,
+    nombre: "Audífonos",
+    precio: 18000,
+    imagen: "audifonos.jpg"
+  },
+  {
+    id: 3,
+    nombre: "Zapatos",
+    precio: 35000,
+    imagen: "zapatos.jpg"
+  }
+];
 
+mostrarProductos(productos);
+}
+                          
 function mostrarProductos(productos) {
     const contenedor = document.getElementById("productos");
     contenedor.innerHTML = "";
@@ -136,6 +154,7 @@ function cerrarBoleta() {
     document.getElementById("boleta").classList.add("oculto");
 }
 mostrarCarrito();
+
 
 
 
