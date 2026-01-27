@@ -9,54 +9,36 @@
 
 <header>
   <h1>🛒 SuperVentas</h1>
+
+  <div class="carrito-btn" onclick="abrirCarrito()">
+    🛍️ <span id="contador">0</span>
+  </div>
 </header>
 
-<main class="productos">
-
-  <div class="producto">
-    <h3>Ventilador</h3>
-    <p>S/ 2200</p>
-    <button onclick="agregar('Ventilador',2200)">Agregar</button>
-  </div>
-
-  <div class="producto">
-    <h3>Zapatos</h3>
-    <p>S/ 6500</p>
-    <button onclick="agregar('Zapatos',6500)">Agregar</button>
-  </div>
-
+<main id="productos">
+  <!-- Productos -->
 </main>
 
-<!-- BOTÓN CARRITO -->
-<div class="carrito-btn" onclick="abrirCarrito()">
-  🛒 <span id="contador">0</span>
-</div>
-
 <!-- BOLETA -->
-<div class="modal" id="modalCarrito">
+<div id="modalCarrito" class="modal">
   <div class="boleta">
     <h2>🧾 Boleta de compra</h2>
 
     <div id="listaCarrito"></div>
 
-    <p class="total">Total: S/ <span id="total">0</span></p>
+    <h3>Total: S/ <span id="total">0</span></h3>
 
     <h4>Método de pago</h4>
-    <label><input type="radio" name="pago" value="Yape"> Yape</label><br>
-    <label><input type="radio" name="pago" value="Plin"> Plin</label><br>
-    <label><input type="radio" name="pago" value="Transferencia"> Transferencia</label><br>
+    <label><input type="radio" name="pago" value="Yape" checked> Yape</label>
+    <label><input type="radio" name="pago" value="Plin"> Plin</label>
+    <label><input type="radio" name="pago" value="Transferencia"> Transferencia</label>
     <label><input type="radio" name="pago" value="Efectivo"> Efectivo</label>
 
-    <button class="finalizar">Finalizar compra</button>
-    <button class="cerrar" onclick="cerrarCarrito()">Cerrar</button>
+    <button class="btn-finalizar" onclick="enviarWhatsApp()">Enviar por WhatsApp</button>
+    <button class="btn-cerrar" onclick="cerrarCarrito()">Cerrar</button>
   </div>
 </div>
 
 <script src="script.js"></script>
 </body>
 </html>
-
-
-
-
-
