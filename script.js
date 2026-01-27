@@ -83,3 +83,4 @@ function vaciarCarrito() {
     mostrarCarrito();
 }
 
+mostrarCarrito();
