@@ -9,7 +9,7 @@ fetch("productos.csv")
     filas.shift();
 
     filas.forEach(fila => {
-        let c = fila.split(",");
+        let c = fila.split(";");
         if (c.length > 1) {
             productos.push({
                 id: c[0],
@@ -118,4 +118,5 @@ function finalizarCompra() {
     cerrarCarrito();
 
     alert("Compra registrada correctamente");
+
 }
