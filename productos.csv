@@ -1,2 +1,3 @@
-﻿Id;Nombre;Precio;Stock;Categoria
-1;Ventilador;22000.00;10;Electrodomestico
+id,nombre,precio,stock,categoria,imagen
+1,Ventilador,22000,10,Electrodomesticos,img/ventilador.jpg
+
