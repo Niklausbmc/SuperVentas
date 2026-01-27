@@ -196,4 +196,48 @@ header input {
   background: #00b34a;
 }
 
+.carrito-btn {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 14px 18px;
+  border-radius: 50px;
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+/* MODAL */
+.modal-carrito {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+/* BOLETA */
+.boleta {
+  background: #fff;
+  width: 320px;
+  padding: 20px;
+  border-radius: 12px;
+  animation: aparecer .35s ease;
+}
+
+@keyframes aparecer {
+  from {
+    transform: scale(0.8) translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
 
