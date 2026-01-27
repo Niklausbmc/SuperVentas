@@ -5,56 +5,57 @@
   <title>SuperVentas</title>
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <header>
   <h1>🛒 SuperVentas</h1>
-  <input type="text" id="buscador" placeholder="Buscar productos...">
 </header>
 
-<main id="productos"></main>
+<main class="productos">
 
-<!-- CARRITO FLOTANTE -->
-<div class="carrito-flotante" onclick="abrirCarrito()">
+  <div class="producto">
+    <h3>Ventilador</h3>
+    <p>S/ 2200</p>
+    <button onclick="agregar('Ventilador',2200)">Agregar</button>
+  </div>
+
+  <div class="producto">
+    <h3>Zapatos</h3>
+    <p>S/ 6500</p>
+    <button onclick="agregar('Zapatos',6500)">Agregar</button>
+  </div>
+
+</main>
+
+<!-- BOTÓN CARRITO -->
+<div class="carrito-btn" onclick="abrirCarrito()">
   🛒 <span id="contador">0</span>
 </div>
 
-<!-- BOTÓN CARRITO -->
-<button class="carrito-btn" onclick="abrirCarrito()">
-  🛒 <span id="contador">0</span>
-</button>
-
-<!-- MODAL CARRITO -->
-<div id="modalCarrito" class="modal-carrito">
-
+<!-- BOLETA -->
+<div class="modal" id="modalCarrito">
   <div class="boleta">
-
     <h2>🧾 Boleta de compra</h2>
 
     <div id="listaCarrito"></div>
 
-    <p class="total">
-      Total: S/ <span id="total">0</span>
-    </p>
+    <p class="total">Total: S/ <span id="total">0</span></p>
 
-    <div class="pagos">
-      <h3>💳 Método de pago</h3>
-      <label><input type="radio" name="pago"> Yape</label>
-      <label><input type="radio" name="pago"> Plin</label>
-      <label><input type="radio" name="pago"> Transferencia</label>
-      <label><input type="radio" name="pago"> Efectivo</label>
-    </div>
+    <h4>Método de pago</h4>
+    <label><input type="radio" name="pago" value="Yape"> Yape</label><br>
+    <label><input type="radio" name="pago" value="Plin"> Plin</label><br>
+    <label><input type="radio" name="pago" value="Transferencia"> Transferencia</label><br>
+    <label><input type="radio" name="pago" value="Efectivo"> Efectivo</label>
 
-    <button class="btn-finalizar">Finalizar compra</button>
-    <button class="btn-cerrar" onclick="cerrarCarrito()">Cerrar</button>
-
+    <button class="finalizar">Finalizar compra</button>
+    <button class="cerrar" onclick="cerrarCarrito()">Cerrar</button>
   </div>
 </div>
 
 <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
