@@ -1,52 +1,49 @@
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-// =====================
-// PRODUCTOS
-// =====================
-const productos = [
-  {
-    nombre: "Ventilador",
-    precio: 22000,
-    imagen: "img/ventilador.png"
-  },
-  {
-    nombre: "Audífonos",
-    precio: 18000,
-    imagen: "img/audifonos.png"
-  },
-  {
-    nombre: "Zapatos",
-    precio: 35000,
-    imagen: "img/zapatos.png"
-  }
-];
+const productosDiv = document.getElementById("productos");
+const listaCarrito = document.getElementById("lista-carrito");
+const totalSpan = document.getElementById("total");
+const contador = document.getElementById("contador");
 
 // =====================
-// MOSTRAR PRODUCTOS
+// CARGAR PRODUCTOS CSV
 // =====================
-const contenedor = document.getElementById("productos");
+fetch("productos.csv")
+  .then(res => res.text())
+  .then(data => {
+    const filas = data.split("\n").slice(1);
 
-productos.forEach(p => {
-  contenedor.innerHTML += `
-    <div class="producto">
-      <img src="${p.imagen}">
-      <h3>${p.nombre}</h3>
-      <p>S/ ${p.precio}</p>
-      <button onclick="agregarAlCarrito('${p.nombre}', ${p.precio})">
-        Agregar
-      </button>
-    </div>
-  `;
-});
+    filas.forEach(fila => {
+      if (!fila.trim()) return;
+
+      const [nombre, precio, imagen] = fila.split(",");
+
+      const card = document.createElement("div");
+      card.className = "producto";
+
+      card.innerHTML = `
+        <img src="${imagen.trim()}" alt="${nombre}">
+        <h3>${nombre}</h3>
+        <p>S/ ${precio}</p>
+        <button onclick="agregarCarrito('${nombre}', ${precio})">
+          Agregar
+        </button>
+      `;
+
+      productosDiv.appendChild(card);
+    });
+
+    actualizarCarrito();
+  });
 
 // =====================
 // AGREGAR AL CARRITO
 // =====================
-function agregarAlCarrito(nombre, precio) {
-  const existe = carrito.find(p => p.nombre === nombre);
+function agregarCarrito(nombre, precio) {
+  const producto = carrito.find(p => p.nombre === nombre);
 
-  if (existe) {
-    existe.cantidad++;
+  if (producto) {
+    producto.cantidad++;
   } else {
     carrito.push({
       nombre,
@@ -55,6 +52,33 @@ function agregarAlCarrito(nombre, precio) {
     });
   }
 
+  guardar();
+  actualizarCarrito();
+}
+
+// =====================
+// SUMAR
+// =====================
+function sumar(nombre) {
+  const producto = carrito.find(p => p.nombre === nombre);
+  producto.cantidad++;
+  guardar();
+  actualizarCarrito();
+}
+
+// =====================
+// RESTAR
+// =====================
+function restar(nombre) {
+  const producto = carrito.find(p => p.nombre === nombre);
+
+  producto.cantidad--;
+
+  if (producto.cantidad <= 0) {
+    carrito = carrito.filter(p => p.nombre !== nombre);
+  }
+
+  guardar();
   actualizarCarrito();
 }
 
@@ -62,28 +86,25 @@ function agregarAlCarrito(nombre, precio) {
 // ACTUALIZAR CARRITO
 // =====================
 function actualizarCarrito() {
-  const lista = document.getElementById("lista-carrito");
-  const totalSpan = document.getElementById("total");
-  const contador = document.getElementById("contador");
-
-  lista.innerHTML = "";
+  listaCarrito.innerHTML = "";
 
   let total = 0;
-  let cantidad = 0;
+  let cantidadTotal = 0;
 
-  carrito.forEach((p, index) => {
+  carrito.forEach(p => {
     total += p.precio * p.cantidad;
-    cantidad += p.cantidad;
+    cantidadTotal += p.cantidad;
 
-    lista.innerHTML += `
-      <div>
-        <strong>${p.nombre}</strong><br>
-        S/ ${p.precio} x ${p.cantidad}
-        <br>
-        <button onclick="cambiarCantidad(${index}, -1)">➖</button>
-        <button onclick="cambiarCantidad(${index}, 1)">➕</button>
+    listaCarrito.innerHTML += `
+      <div class="item-carrito">
+        <span>${p.nombre}</span>
+        <div class="controles">
+          <button onclick="restar('${p.nombre}')">−</button>
+          <span>${p.cantidad}</span>
+          <button onclick="sumar('${p.nombre}')">+</button>
+        </div>
+        <span>S/ ${p.precio * p.cantidad}</span>
       </div>
-      <hr>
     `;
   });
 
@@ -92,16 +113,10 @@ function actualizarCarrito() {
 }
 
 // =====================
-// CAMBIAR CANTIDAD
+// GUARDAR
 // =====================
-function cambiarCantidad(index, cambio) {
-  carrito[index].cantidad += cambio;
-
-  if (carrito[index].cantidad <= 0) {
-    carrito.splice(index, 1);
-  }
-
-  actualizarCarrito();
+function guardar() {
+  localStorage.setItem("carrito", JSON.stringify(carrito));
 }
 
 // =====================
@@ -119,25 +134,16 @@ function cerrarCarrito() {
 // WHATSAPP
 // =====================
 function comprarWhatsApp() {
-  if (carrito.length === 0) {
-    alert("Carrito vacío");
-    return;
-  }
-
-  let mensaje = "🧾 Boleta de compra%0A%0A";
-  let total = 0;
+  let mensaje = "🧾 *Pedido:*%0A";
 
   carrito.forEach(p => {
-    mensaje += `${p.nombre} x${p.cantidad} = S/ ${p.precio * p.cantidad}%0A`;
-    total += p.precio * p.cantidad;
+    mensaje += `- ${p.nombre} x${p.cantidad} = S/ ${p.precio * p.cantidad}%0A`;
   });
 
-  mensaje += `%0ATotal: S/ ${total}`;
+  mensaje += `%0A💰 Total: S/ ${totalSpan.textContent}`;
 
   window.open(
-    `https://wa.me/5355030439?text=${mensaje}`,
+    "https://wa.me/5355030439?text=" + mensaje,
     "_blank"
   );
 }
-
-
