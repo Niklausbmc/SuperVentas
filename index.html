@@ -2,59 +2,20 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Mi Tienda</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- CSS -->
+    <title>Tienda Online</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- HEADER -->
-    <header class="header">
-        <h1>🛒 Mi Tienda</h1>
+<h1>Tienda Online</h1>
 
-        <input 
-            type="text" 
-            id="buscador" 
-            placeholder="Buscar productos..."
-        >
+<div id="productos" class="productos"></div>
 
-        <div class="carrito-icono">
-            🛍️ <span id="contador">0</span>
-        </div>
-    </header>
+<h2>🛒 Carrito</h2>
+<div id="carrito"></div>
 
-    <!-- CATEGORÍAS -->
-    <div id="categorias" class="categorias">
-        <button onclick="filtrarCategoria('todas')">Todos</button>
-        <button onclick="filtrarCategoria('electrodomesticos')">Electrodomésticos</button>
-        <button onclick="filtrarCategoria('tecnologia')">Tecnología</button>
-        <button onclick="filtrarCategoria('cocina')">Cocina</button>
-    </div>
+<button onclick="vaciarCarrito()">Vaciar carrito</button>
 
-    <!-- CONTENEDOR -->
-    <div class="contenedor">
-
-        <!-- TIENDA -->
-        <div id="productos" class="tienda"></div>
-
-        <!-- CARRITO -->
-        <div class="carrito">
-            <h2>Carrito</h2>
-
-            <ul id="listaCarrito"></ul>
-
-            <p><strong>Total: $<span id="total">0</span></strong></p>
-
-            <button id="vaciar">Vaciar carrito</button>
-            <button id="finalizar">Finalizar compra</button>
-        </div>
-
-    </div>
-
-    <!-- SCRIPT -->
-    <script src="script.js"></script>
-
+<script src="script.js"></script>
 </body>
 </html>
