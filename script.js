@@ -24,7 +24,9 @@ fetch("productos.csv")
   });
 
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-
+function agregar(id) {
+  agregarAlCarrito(id);
+}
 const contenedor = document.getElementById("productos");
 const listaCarrito = document.getElementById("lista-carrito");
 const totalHTML = document.getElementById("total");
@@ -194,6 +196,7 @@ function mostrarProductosFiltrados(lista) {
         `;
     });
 }
+
 
 
 
