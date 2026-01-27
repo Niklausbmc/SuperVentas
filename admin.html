@@ -7,38 +7,21 @@
 </head>
 <body>
 
-<h2>🔐 Acceso administrador</h2>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel Administrativo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-<input type="password" id="password" placeholder="Contraseña">
-<button onclick="login()">Entrar</button>
+<h2>🔐 Acceso Administrador</h2>
 
-<hr>
-
-<div id="panelAdmin" style="display:none;">
-
-  <h1>📦 Panel Administrativo</h1>
-
-  <input id="nombre" placeholder="Nombre del producto">
-  <input id="precio" type="number" placeholder="Precio">
-  <input id="categoria" placeholder="Categoría">
-  <input id="imagen" placeholder="img/producto.jpg">
-
-  <button id="agregar">Agregar producto</button>
-
-  <h2>Productos</h2>
-
-  <table border="1" width="100%">
-    <thead>
-      <tr>
-        <th>Nombre</th>
-        <th>Precio</th>
-        <th>Categoría</th>
-        <th>Imagen</th>
-      </tr>
-    </thead>
-    <tbody id="tablaProductos"></tbody>
-  </table>
-
+<div class="login-admin">
+    <input type="text" id="usuario" placeholder="Usuario"><br><br>
+    <input type="password" id="clave" placeholder="Contraseña"><br><br>
+    <button onclick="login()">Ingresar</button>
 </div>
 
 <script src="admin.js"></script>
