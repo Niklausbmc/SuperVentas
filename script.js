@@ -135,3 +135,5 @@ document.getElementById("vaciar").addEventListener("click", () => {
   localStorage.removeItem("carrito");
   mostrarCarrito();
 });
+document.getElementById("contador").textContent =
+  carrito.reduce((acc, p) => acc + p.cantidad, 0);
