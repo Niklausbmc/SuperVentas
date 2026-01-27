@@ -20,6 +20,11 @@
   🛒 <span id="contador">0</span>
 </div>
 
+<!-- BOTÓN CARRITO -->
+<button class="btn-carrito" onclick="abrirCarrito()">
+  🛒 <span id="contador">0</span>
+</button>
+
 <!-- MODAL -->
 <div id="modalCarrito" class="modal">
 
@@ -33,29 +38,14 @@
       Total: S/ <span id="total">0</span>
     </p>
 
-    <!-- MÉTODOS DE PAGO -->
+    <!-- MÉTODO DE PAGO -->
     <div class="pagos">
       <h3>💳 Método de pago</h3>
 
-      <label>
-        <input type="radio" name="pago" value="Yape">
-        Yape
-      </label>
-
-      <label>
-        <input type="radio" name="pago" value="Plin">
-        Plin
-      </label>
-
-      <label>
-        <input type="radio" name="pago" value="Transferencia">
-        Transferencia
-      </label>
-
-      <label>
-        <input type="radio" name="pago" value="Efectivo">
-        Efectivo
-      </label>
+      <label><input type="radio" name="pago" value="Yape"> Yape</label>
+      <label><input type="radio" name="pago" value="Plin"> Plin</label>
+      <label><input type="radio" name="pago" value="Transferencia"> Transferencia</label>
+      <label><input type="radio" name="pago" value="Efectivo"> Efectivo</label>
     </div>
 
     <button class="btn-finalizar" onclick="finalizarCompra()">
@@ -72,5 +62,6 @@
 <script src="script.js"></script>
 </body>
 </html>
+
 
 
