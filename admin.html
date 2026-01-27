@@ -7,9 +7,16 @@
 </head>
 <body>
 
-<h1>📦 Panel Administrativo</h1>
+<h2>🔐 Acceso administrador</h2>
 
-<div class="admin">
+<input type="password" id="password" placeholder="Contraseña">
+<button onclick="login()">Entrar</button>
+
+<hr>
+
+<div id="panelAdmin" style="display:none;">
+
+  <h1>📦 Panel Administrativo</h1>
 
   <input id="nombre" placeholder="Nombre del producto">
   <input id="precio" type="number" placeholder="Precio">
@@ -19,6 +26,7 @@
   <button id="agregar">Agregar producto</button>
 
   <h2>Productos</h2>
+
   <table border="1" width="100%">
     <thead>
       <tr>
