@@ -37,6 +37,8 @@ function agregarCarrito(id, nombre, precio) {
             cantidad: 1
         });
     }
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+mostrarCarrito();
 
     mostrarCarrito();
 }
@@ -71,13 +73,14 @@ function cambiarCantidad(id, cambio) {
     if (producto.cantidad <= 0) {
         carrito = carrito.filter(p => p.id != id);
     }
+   
+    localStorage.setItem("carrito", JSON.stringify(carrito));
 
     mostrarCarrito();
 }
 
 function vaciarCarrito() {
     carrito = [];
+    localStorage.removeItem("carrito");
     mostrarCarrito();
 }
-
-
