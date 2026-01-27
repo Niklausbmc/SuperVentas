@@ -14,6 +14,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const total = document.getElementById("total");
   const modal = document.getElementById("modal-carrito");
 
+  // =============================
+  // MOSTRAR PRODUCTOS
+  // =============================
   function mostrarProductos() {
     contenedor.innerHTML = "";
     productos.forEach(p => {
@@ -28,12 +31,87 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // =============================
+  // AGREGAR AL CARRITO
+  // =============================
   window.agregarAlCarrito = (id) => {
-    const producto = productos.find(p => p.id === id);
-    carrito.push(producto);
-    contador.textContent = carrito.length;
+    const existe = carrito.find(p => p.id === id);
+
+    if (existe) {
+      existe.cantidad++;
+    } else {
+      const producto = productos.find(p => p.id === id);
+      carrito.push({
+        ...producto,
+        cantidad: 1
+      });
+    }
+
+    actualizarContador();
   };
 
+  // =============================
+  // MOSTRAR CARRITO
+  // =============================
+  function mostrarCarrito() {
+    lista.innerHTML = "";
+    let suma = 0;
+
+    carrito.forEach(p => {
+      suma += p.precio * p.cantidad;
+
+      lista.innerHTML += `
+        <div class="item-carrito">
+          <strong>${p.nombre}</strong><br>
+          S/ ${p.precio}
+
+          <div class="cantidad">
+            <button onclick="restar(${p.id})">−</button>
+            <span>${p.cantidad}</span>
+            <button onclick="sumar(${p.id})">+</button>
+          </div>
+        </div>
+        <hr>
+      `;
+    });
+
+    total.textContent = suma;
+  }
+
+  // =============================
+  // SUMAR / RESTAR
+  // =============================
+  window.sumar = (id) => {
+    const prod = carrito.find(p => p.id === id);
+    prod.cantidad++;
+    mostrarCarrito();
+    actualizarContador();
+  };
+
+  window.restar = (id) => {
+    const prod = carrito.find(p => p.id === id);
+    prod.cantidad--;
+
+    if (prod.cantidad <= 0) {
+      carrito = carrito.filter(p => p.id !== id);
+    }
+
+    mostrarCarrito();
+    actualizarContador();
+  };
+
+  // =============================
+  // CONTADOR
+  // =============================
+  function actualizarContador() {
+    let totalProductos = 0;
+    carrito.forEach(p => totalProductos += p.cantidad);
+    contador.textContent = totalProductos;
+  }
+
+  // =============================
+  // MODAL
+  // =============================
   window.abrirCarrito = () => {
     modal.style.display = "flex";
     mostrarCarrito();
@@ -43,30 +121,21 @@ document.addEventListener("DOMContentLoaded", () => {
     modal.style.display = "none";
   };
 
-  function mostrarCarrito() {
-    lista.innerHTML = "";
-    let suma = 0;
-
-    carrito.forEach(p => {
-      lista.innerHTML += `<p>${p.nombre} - S/ ${p.precio}</p>`;
-      suma += p.precio;
-    });
-
-    total.textContent = suma;
-  }
-
+  // =============================
+  // WHATSAPP
+  // =============================
   window.comprarWhatsApp = () => {
     let mensaje = "🧾 *Pedido*%0A";
     let suma = 0;
 
     carrito.forEach(p => {
-      mensaje += `• ${p.nombre} - S/ ${p.precio}%0A`;
-      suma += p.precio;
+      mensaje += `• ${p.nombre} x${p.cantidad} = S/ ${p.precio * p.cantidad}%0A`;
+      suma += p.precio * p.cantidad;
     });
 
     mensaje += `%0A*Total: S/ ${suma}*`;
 
-    const numero = "5355030439"; // 👈 CAMBIA TU NÚMERO
+    const numero = "5355030439"; // 👈 TU NÚMERO
     window.open(`https://wa.me/${numero}?text=${mensaje}`);
   };
 
