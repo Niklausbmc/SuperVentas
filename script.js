@@ -16,7 +16,7 @@ function cargarCSV() {
       filas.shift(); // quitar encabezado
 
       filas.forEach(fila => {
-        const [id, nombre, precio, imagen] = fila.split(";");
+        const [id, nombre, precio, stock, categoria, imagen] = fila.split(";");
 
         productos.push({
           id: Number(id),
@@ -127,5 +127,6 @@ function enviarWhatsApp() {
 
   window.open(`https://wa.me/5355030439?text=${msg}`);
 }
+
 
 
