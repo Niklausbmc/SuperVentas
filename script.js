@@ -126,12 +126,13 @@ function actualizarContador() {
 }
 
 function abrirCarrito() {
-    document.getElementById("modal-carrito").style.display = "flex";
-    mostrarCarrito();
+    const modal = document.getElementById("modal-carrito");
+    modal.style.display = "flex";
 }
 
 function cerrarCarrito() {
-    document.getElementById("modal-carrito").style.display = "none";
+    const modal = document.getElementById("modal-carrito");
+    modal.style.display = "none";
 }
 
 function comprarWhatsApp() {
@@ -176,6 +177,7 @@ function mostrarProductosFiltrados(lista) {
         `;
     });
 }
+
 
 
 
