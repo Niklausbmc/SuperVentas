@@ -241,3 +241,79 @@ header input {
   }
 }
 
+body {
+  font-family: Arial;
+  background: #f3f4f6;
+}
+
+.productos {
+  display: flex;
+  gap: 20px;
+  padding: 30px;
+}
+
+.producto {
+  background: white;
+  padding: 20px;
+  width: 200px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 8px;
+  width: 100%;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.carrito-btn {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: #2563eb;
+  color: white;
+  padding: 15px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.5);
+  justify-content: flex-end;
+}
+
+.boleta {
+  background: white;
+  width: 320px;
+  height: 100%;
+  padding: 20px;
+  animation: slide .3s ease;
+}
+
+@keyframes slide {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+.total {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.finalizar {
+  background: green;
+  margin-top: 10px;
+}
+
+.cerrar {
+  background: #aaa;
+  margin-top: 5px;
+}
