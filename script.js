@@ -8,13 +8,20 @@ fetch("productos.csv")
     const contenedor = document.getElementById("productos");
 
     for (let i = 1; i < filas.length; i++) {
-      const [nombre, precio, imagen] = filas[i].split(",");
+      const columnas = filas[i].split(",");
+
+      const id = columnas[0];
+      const nombre = columnas[1];
+      const precio = columnas[2];
+      const stock = columnas[3];
+      const categoria = columnas[4];
+      const imagen = columnas[5];
 
       const div = document.createElement("div");
       div.className = "producto";
 
       div.innerHTML = `
-        <img src="${imagen}">
+        <img src="${imagen}" alt="${nombre}">
         <h3>${nombre}</h3>
         <p>$${precio}</p>
         <button>Agregar</button>
@@ -26,7 +33,8 @@ fetch("productos.csv")
 
       contenedor.appendChild(div);
     }
-  });
+  })
+  .catch(err => console.error(err));
 
 function agregarCarrito(nombre, precio) {
   carrito.push({ nombre, precio: Number(precio) });
