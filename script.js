@@ -140,7 +140,6 @@ function comprarWhatsApp() {
 }
 
 // =================== INICIO ===================
-mostrarProductos();
 actualizarContador();
 
 // =================== BUSCADOR ===================
@@ -170,5 +169,6 @@ function mostrarProductosFiltrados(lista) {
         `;
     });
 }
+
 
 
