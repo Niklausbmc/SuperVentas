@@ -3,55 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <title>Mi Tienda</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-  <!-- ENCABEZADO -->
-  <header class="header">
-    <h1>MI TIENDA</h1>
+<h1>🛒 Mi Tienda</h1>
 
-    <input 
-      type="text" 
-      id="buscador" 
-      placeholder="Buscar productos..."
-      onkeyup="mostrarProductos()"
-    >
+<div class="contenedor">
 
-    <div class="carrito-icono">
-      🛒 <span id="contador">0</span>
-    </div>
-  </header>
+  <div id="productos" class="tienda"></div>
 
-  <!-- MENÚ CATEGORÍAS -->
-  <nav class="menu">
-    <button onclick="filtrarCategoria('')">Todos</button>
-    <button onclick="filtrarCategoria('Ropa')">Ropa</button>
-    <button onclick="filtrarCategoria('Electrodomestico')">Electrodomésticos</button>
-    <button onclick="filtrarCategoria('Cosmeticos')">Cosméticos</button>
-  </nav>
-
-  <!-- PRODUCTOS -->
-  <main id="productos" class="productos"></main>
-
-  <!-- PANEL CARRITO -->
-  <div id="carrito-panel">
-    <h3>🛒 Carrito</h3>
-    <div id="carrito-items"></div>
-    <hr>
-    <p><strong>Total:</strong> $<span id="total">0</span></p>
-    <button onclick="vaciarCarrito()">Vaciar carrito</button>
-<button onclick="comprarWhatsApp()" class="btn-wsp">
-  Comprar por WhatsApp
-</button>
+  <div class="carrito">
+    <h2>Carrito</h2>
+    <ul id="lista-carrito"></ul>
+    <p><strong>Total: $<span id="total">0</span></strong></p>
+    <button id="vaciar">Vaciar carrito</button>
   </div>
 
-  <!-- JS -->
-  <script src="script.js"></script>
+</div>
 
+<script src="script.js"></script>
 </body>
 </html>
