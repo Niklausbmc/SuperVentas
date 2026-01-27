@@ -137,3 +137,28 @@ document.getElementById("vaciar").addEventListener("click", () => {
 });
 document.getElementById("contador").textContent =
   carrito.reduce((acc, p) => acc + p.cantidad, 0);
+document.getElementById("finalizar").addEventListener("click", () => {
+  if (carrito.length === 0) {
+    alert("El carrito está vacío");
+    return;
+  }
+  document.getElementById("checkout").style.display = "block";
+});
+document.getElementById("confirmarCompra").addEventListener("click", () => {
+  const nombre = document.getElementById("nombreCliente").value;
+  const correo = document.getElementById("correoCliente").value;
+  const direccion = document.getElementById("direccionCliente").value;
+
+  if (!nombre || !correo || !direccion) {
+    alert("Completa todos los datos");
+    return;
+  }
+
+  alert("✅ Compra realizada con éxito\nGracias por tu pedido");
+
+  carrito = [];
+  localStorage.removeItem("carrito");
+  mostrarCarrito();
+
+  document.getElementById("checkout").style.display = "none";
+});
