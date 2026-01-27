@@ -12,43 +12,55 @@ fetch("productos.csv")
 
       const id = columnas[0];
       const nombre = columnas[1];
-      const precio = columnas[2];
-      const stock = columnas[3];
-      const categoria = columnas[4];
+      const precio = Number(columnas[2]);
       const imagen = columnas[5];
 
       const div = document.createElement("div");
       div.className = "producto";
 
       div.innerHTML = `
-        <img src="${imagen}" alt="${nombre}">
+        <img src="${imagen}">
         <h3>${nombre}</h3>
         <p>$${precio}</p>
         <button>Agregar</button>
       `;
 
       div.querySelector("button").addEventListener("click", () => {
-        agregarCarrito(nombre, precio);
+        agregarCarrito(id, nombre, precio);
       });
 
       contenedor.appendChild(div);
     }
-  })
-  .catch(err => console.error(err));
+  });
 
-function agregarCarrito(nombre, precio) {
-  carrito.push({ nombre, precio: Number(precio) });
-  total += Number(precio);
+function agregarCarrito(id, nombre, precio) {
+  const producto = carrito.find(p => p.id === id);
+
+  if (producto) {
+    producto.cantidad++;
+  } else {
+    carrito.push({
+      id,
+      nombre,
+      precio,
+      cantidad: 1
+    });
+  }
+
   mostrarCarrito();
 }
 
 function mostrarCarrito() {
   const lista = document.getElementById("lista-carrito");
   lista.innerHTML = "";
+  total = 0;
 
   carrito.forEach(p => {
+    const subtotal = p.precio * p.cantidad;
+    total += subtotal;
+
     const li = document.createElement("li");
-    li.textContent = `${p.nombre} - $${p.precio}`;
+    li.textContent = `${p.nombre} x${p.cantidad} - $${subtotal}`;
     lista.appendChild(li);
   });
 
