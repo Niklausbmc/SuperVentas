@@ -1,195 +1,101 @@
-// ==========================
-// CARRITO DESDE LOCALSTORAGE
-// ==========================
-let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-
-// ==========================
-// PRODUCTOS (puedes luego usar CSV)
-// ==========================
-const productos = [
-  {
-    id: 1,
-    nombre: "Ventilador",
-    precio: 22000,
-    imagen: "img/ventilador.jpg"
-  },
-  {
-    id: 2,
-    nombre: "Audífonos",
-    precio: 18000,
-    imagen: "img/audifonos.jpg"
-  },
-  {
-    id: 3,
-    nombre: "Zapatos",
-    precio: 35000,
-    imagen: "img/zapatos.jpg"
-  }
-];
-
-// ==========================
-// MOSTRAR PRODUCTOS
-// ==========================
-function mostrarProductos() {
-  const contenedor = document.getElementById("productos");
-  contenedor.innerHTML = "";
-
-  productos.forEach(p => {
-    contenedor.innerHTML += `
-      <div class="producto">
-        <img src="${p.imagen}">
-        <h3>${p.nombre}</h3>
-        <p>S/ ${p.precio}</p>
-        <button onclick="agregarAlCarrito(${p.id})">
-          Agregar
-        </button>
-      </div>
-    `;
-  });
-}
+let carrito = [];
 
 // ==========================
 // AGREGAR AL CARRITO
 // ==========================
-function agregarAlCarrito(id) {
-  const producto = productos.find(p => p.id === id);
-  const existe = carrito.find(p => p.id === id);
+function agregarAlCarrito(nombre, precio) {
+  const existe = carrito.find(p => p.nombre === nombre);
 
   if (existe) {
     existe.cantidad++;
   } else {
     carrito.push({
-      ...producto,
+      nombre,
+      precio,
       cantidad: 1
     });
   }
 
-  guardarCarrito();
-  mostrarCarrito();
-  actualizarContador();
+  actualizarCarrito();
 }
 
 // ==========================
-// MOSTRAR CARRITO
+// ACTUALIZAR CARRITO
 // ==========================
-function mostrarCarrito() {
-  const div = document.getElementById("carrito");
+function actualizarCarrito() {
+  const lista = document.getElementById("lista-carrito");
   const totalSpan = document.getElementById("total");
+  const contador = document.getElementById("contador");
 
-  div.innerHTML = "";
+  lista.innerHTML = "";
+
   let total = 0;
+  let totalProductos = 0;
 
-  carrito.forEach(p => {
+  carrito.forEach((p, index) => {
     total += p.precio * p.cantidad;
+    totalProductos += p.cantidad;
 
-    div.innerHTML += `
+    lista.innerHTML += `
       <div class="item-carrito">
-        <b>${p.nombre}</b><br>
+        <strong>${p.nombre}</strong><br>
         S/ ${p.precio} x ${p.cantidad}
         <br>
-        <button onclick="cambiarCantidad(${p.id}, 1)">+</button>
-        <button onclick="cambiarCantidad(${p.id}, -1)">-</button>
+        <button onclick="cambiarCantidad(${index}, -1)">➖</button>
+        <button onclick="cambiarCantidad(${index}, 1)">➕</button>
       </div>
+      <hr>
     `;
   });
 
   totalSpan.textContent = total;
+  contador.textContent = totalProductos;
 }
 
 // ==========================
 // CAMBIAR CANTIDAD
 // ==========================
-function cambiarCantidad(id, cambio) {
-  const producto = carrito.find(p => p.id === id);
+function cambiarCantidad(index, cambio) {
+  carrito[index].cantidad += cambio;
 
-  producto.cantidad += cambio;
-
-  if (producto.cantidad <= 0) {
-    carrito = carrito.filter(p => p.id !== id);
+  if (carrito[index].cantidad <= 0) {
+    carrito.splice(index, 1);
   }
 
-  guardarCarrito();
-  mostrarCarrito();
-  actualizarContador();
+  actualizarCarrito();
 }
 
 // ==========================
-// VACIAR CARRITO
+// ABRIR / CERRAR
 // ==========================
-function vaciarCarrito() {
-  carrito = [];
-  localStorage.removeItem("carrito");
-  mostrarCarrito();
-  actualizarContador();
+function abrirCarrito() {
+  document.getElementById("modal-carrito").style.display = "flex";
 }
 
-// ==========================
-// CONTADOR FLOTANTE
-// ==========================
-function actualizarContador() {
-  const total = carrito.reduce((sum, p) => sum + p.cantidad, 0);
-  document.getElementById("contador").textContent = total;
-}
-
-// ==========================
-// FINALIZAR COMPRA (BOLETA)
-// ==========================
-function finalizarCompra() {
-  if (carrito.length === 0) {
-    alert("El carrito está vacío");
-    return;
-  }
-
-  let mensaje = "🧾 BOLETA DE COMPRA\n\n";
-
-  carrito.forEach(p => {
-    mensaje += `${p.nombre} x ${p.cantidad} = S/ ${p.precio * p.cantidad}\n`;
-  });
-
-  const total = carrito.reduce(
-    (sum, p) => sum + p.precio * p.cantidad,
-    0
-  );
-
-  mensaje += `\nTOTAL: S/ ${total}`;
-
-  alert(mensaje);
+function cerrarCarrito() {
+  document.getElementById("modal-carrito").style.display = "none";
 }
 
 // ==========================
 // WHATSAPP
 // ==========================
 function comprarWhatsApp() {
-  let texto = "🛒 Pedido:\n\n";
+  if (carrito.length === 0) {
+    alert("El carrito está vacío");
+    return;
+  }
+
+  let mensaje = "🧾 *Boleta de compra*%0A%0A";
+
+  let total = 0;
 
   carrito.forEach(p => {
-    texto += `${p.nombre} x ${p.cantidad}\n`;
+    mensaje += `• ${p.nombre} x${p.cantidad} = S/ ${p.precio * p.cantidad}%0A`;
+    total += p.precio * p.cantidad;
   });
 
-  const total = carrito.reduce(
-    (sum, p) => sum + p.precio * p.cantidad,
-    0
-  );
+  mensaje += `%0A*Total: S/ ${total}*`;
 
-  texto += `\nTotal: S/ ${total}`;
-
-  const telefono = "5355030439"; // CAMBIA TU NÚMERO
-  const url = `https://wa.me/${telefono}?text=${encodeURIComponent(texto)}`;
-
-  window.open(url, "_blank");
+  const telefono = "5355030439"; // TU NÚMERO
+  window.open(`https://wa.me/${telefono}?text=${mensaje}`, "_blank");
 }
-
-// ==========================
-// GUARDAR
-// ==========================
-function guardarCarrito() {
-  localStorage.setItem("carrito", JSON.stringify(carrito));
-}
-
-// ==========================
-// INICIAR
-// ==========================
-mostrarProductos();
-mostrarCarrito();
-actualizarContador();
-
