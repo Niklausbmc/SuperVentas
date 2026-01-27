@@ -1,8 +1,23 @@
-let productos = JSON.parse(localStorage.getItem("productosAdmin")) || [];
+function login() {
+  const pass = document.getElementById("password").value;
 
+  if (pass === "1234") {
+    document.getElementById("panelAdmin").style.display = "block";
+  } else {
+    alert("Contraseña incorrecta");
+  }
+}
+
+// =============================
+// PRODUCTOS
+// =============================
+
+let productos = JSON.parse(localStorage.getItem("productosAdmin")) || [];
 const tabla = document.getElementById("tablaProductos");
 
 function mostrarProductos() {
+  if (!tabla) return;
+
   tabla.innerHTML = "";
 
   productos.forEach(p => {
@@ -19,7 +34,7 @@ function mostrarProductos() {
   });
 }
 
-document.getElementById("agregar").addEventListener("click", () => {
+document.getElementById("agregar")?.addEventListener("click", () => {
   const nombre = document.getElementById("nombre").value;
   const precio = document.getElementById("precio").value;
   const categoria = document.getElementById("categoria").value;
@@ -31,7 +46,6 @@ document.getElementById("agregar").addEventListener("click", () => {
   }
 
   productos.push({
-    id: Date.now(),
     nombre,
     precio: Number(precio),
     categoria,
@@ -39,7 +53,6 @@ document.getElementById("agregar").addEventListener("click", () => {
   });
 
   localStorage.setItem("productosAdmin", JSON.stringify(productos));
-
   mostrarProductos();
 
   document.getElementById("nombre").value = "";
