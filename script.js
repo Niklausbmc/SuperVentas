@@ -1,101 +1,87 @@
-let productos = JSON.parse(localStorage.getItem("productos")) || [];
 let carrito = [];
 
-const contenedor = document.getElementById("productos");
-const listaCarrito = document.getElementById("listaCarrito");
-const totalSpan = document.getElementById("total");
-const contador = document.getElementById("contador");
+// Cargar CSV
+fetch("productos.csv")
+    .then(res => res.text())
+    .then(data => {
+        const filas = data.trim().split("\n").slice(1);
 
-// MOSTRAR PRODUCTOS
-function mostrarProductos(lista = productos) {
+        const productos = filas.map(fila => {
+            const [id, nombre, precio, imagen] = fila.split(",");
+            return {
+                id,
+                nombre,
+                precio: Number(precio),
+                imagen
+            };
+        });
+
+        mostrarProductos(productos);
+    });
+
+function mostrarProductos(productos) {
+    const contenedor = document.getElementById("productos");
     contenedor.innerHTML = "";
 
-    lista.forEach((p, index) => {
+    productos.forEach(p => {
         contenedor.innerHTML += `
             <div class="producto">
-                <img src="img/${p.imagen}" alt="${p.nombre}">
+                <img src="img/${p.imagen}" width="150">
                 <h3>${p.nombre}</h3>
-                <p class="precio">$${p.precio}</p>
-                <button onclick="agregar(${index})">Agregar</button>
+                <p>$${p.precio}</p>
+                <button onclick="agregarCarrito('${p.id}','${p.nombre}',${p.precio})">
+                    Agregar
+                </button>
             </div>
         `;
     });
 }
 
-mostrarProductos();
-
-// AGREGAR AL CARRITO
-function agregar(index) {
-    const producto = productos[index];
-
-    const existe = carrito.find(p => p.nombre === producto.nombre);
+function agregarCarrito(id, nombre, precio) {
+    const existe = carrito.find(p => p.id === id);
 
     if (existe) {
         existe.cantidad++;
     } else {
         carrito.push({
-            ...producto,
+            id,
+            nombre,
+            precio,
             cantidad: 1
         });
     }
 
-    actualizarCarrito();
+    mostrarCarrito();
 }
 
-// ACTUALIZAR CARRITO
-function actualizarCarrito() {
-    listaCarrito.innerHTML = "";
-    let total = 0;
-    let cantidadTotal = 0;
+function mostrarCarrito() {
+    const div = document.getElementById("carrito");
+    div.innerHTML = "";
 
-    carrito.forEach((p, i) => {
-        total += p.precio * p.cantidad;
-        cantidadTotal += p.cantidad;
-
-        listaCarrito.innerHTML += `
-            <li>
-                ${p.nombre} 
-                (${p.cantidad})
-                - $${p.precio * p.cantidad}
-                <button onclick="menos(${i})">−</button>
-                <button onclick="mas(${i})">+</button>
-            </li>
+    carrito.forEach(p => {
+        div.innerHTML += `
+            <div>
+                ${p.nombre} - $${p.precio} x ${p.cantidad}
+                <button onclick="cambiarCantidad('${p.id}',1)">+</button>
+                <button onclick="cambiarCantidad('${p.id}',-1)">-</button>
+            </div>
         `;
     });
-
-    totalSpan.textContent = total;
-    contador.textContent = cantidadTotal;
 }
 
-// SUMAR
-function mas(i) {
-    carrito[i].cantidad++;
-    actualizarCarrito();
-}
+function cambiarCantidad(id, cambio) {
+    const producto = carrito.find(p => p.id === id);
 
-// RESTAR
-function menos(i) {
-    carrito[i].cantidad--;
+    producto.cantidad += cambio;
 
-    if (carrito[i].cantidad <= 0) {
-        carrito.splice(i, 1);
+    if (producto.cantidad <= 0) {
+        carrito = carrito.filter(p => p.id !== id);
     }
 
-    actualizarCarrito();
+    mostrarCarrito();
 }
 
-// VACIAR
-document.getElementById("vaciar").addEventListener("click", () => {
+function vaciarCarrito() {
     carrito = [];
-    actualizarCarrito();
-});
-
-// FILTRO CATEGORÍAS
-function filtrarCategoria(cat) {
-    if (cat === "todas") {
-        mostrarProductos();
-    } else {
-        const filtrados = productos.filter(p => p.categoria === cat);
-        mostrarProductos(filtrados);
-    }
+    mostrarCarrito();
 }
