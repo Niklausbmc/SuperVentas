@@ -2,28 +2,33 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Mi Tienda</title>
+  <title>SuperVentas</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>🛒 Mi Tienda</h1>
+<header class="header">
+  <div class="logo">🛒 SuperVentas</div>
 
-<input 
-  type="text" 
-  id="buscador" 
-  <div id="categorias" style="margin-bottom: 20px;">
+  <input 
+    type="text" 
+    id="buscador"
+    placeholder="Buscar productos..."
+  >
+
+  <div class="carrito-icono">
+    🧺 <span id="contador">0</span>
+  </div>
+</header>
+
+<div id="categorias" class="categorias">
   <button onclick="filtrarCategoria('todas')">Todos</button>
   <button onclick="filtrarCategoria('electrodomesticos')">Electrodomésticos</button>
   <button onclick="filtrarCategoria('tecnologia')">Tecnología</button>
   <button onclick="filtrarCategoria('cocina')">Cocina</button>
 </div>
-  placeholder="Buscar productos..."
-  style="width: 100%; padding: 10px; margin-bottom: 20px;"
->
-  
-  <div class="contenedor">
 
+<div class="contenedor">
   <div id="productos" class="tienda"></div>
 
   <div class="carrito">
@@ -32,11 +37,8 @@
     <p><strong>Total: $<span id="total">0</span></strong></p>
     <button id="vaciar">Vaciar carrito</button>
   </div>
-
 </div>
 
 <script src="script.js"></script>
 </body>
 </html>
-
-
