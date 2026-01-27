@@ -173,7 +173,7 @@ function comprarWhatsApp() {
 
   texto += `\nTotal: S/ ${total}`;
 
-  const telefono = "51999999999"; // CAMBIA TU NÚMERO
+  const telefono = "5355030439"; // CAMBIA TU NÚMERO
   const url = `https://wa.me/${telefono}?text=${encodeURIComponent(texto)}`;
 
   window.open(url, "_blank");
@@ -192,3 +192,4 @@ function guardarCarrito() {
 mostrarProductos();
 mostrarCarrito();
 actualizarContador();
+
