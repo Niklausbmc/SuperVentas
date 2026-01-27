@@ -144,13 +144,13 @@ function finalizarCompra() {
   }
 
   if (carrito.length === 0) {
-    alert("Tu carrito está vacío");
+    alert("El carrito está vacío");
     return;
   }
 
   alert(
     "✅ Compra realizada\n" +
-    "Método: " + metodo.value + "\n" +
+    "Método de pago: " + metodo.value + "\n" +
     "Total: S/ " + totalHTML.textContent
   );
 
@@ -159,4 +159,5 @@ function finalizarCompra() {
   mostrarCarrito();
   cerrarCarrito();
 }
+
 
