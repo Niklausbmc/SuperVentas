@@ -59,6 +59,13 @@ function agregar(id) {
 
     guardarCarrito();
     actualizarContador();
+    const carritoIcon = document.querySelector(".carrito-flotante");
+
+carritoIcon.classList.add("carrito-animado");
+
+setTimeout(() => {
+  carritoIcon.classList.remove("carrito-animado");
+}, 400);
 }
 
 // =================== CARRITO ===================
@@ -169,6 +176,7 @@ function mostrarProductosFiltrados(lista) {
         `;
     });
 }
+
 
 
 
