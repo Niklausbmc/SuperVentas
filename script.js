@@ -1,36 +1,54 @@
+let carrito = [];
+let total = 0;
+
 fetch("productos.csv")
-  .then(response => response.text())
+  .then(res => res.text())
   .then(data => {
-    const filas = data.split("\n").slice(1);
+    const filas = data.trim().split("\n");
     const contenedor = document.getElementById("productos");
 
-    contenedor.innerHTML = "";
+    for (let i = 1; i < filas.length; i++) {
+      const [nombre, precio, imagen] = filas[i].split(",");
 
-    filas.forEach(fila => {
-      if (fila.trim() === "") return;
+      const div = document.createElement("div");
+      div.className = "producto";
 
-      const columnas = fila.split(",");
-
-      const nombre = columnas[1];
-      const precio = columnas[2];
-      const stock = columnas[3];
-      const categoria = columnas[4];
-      const imagen = columnas[5];
-
-      const card = document.createElement("div");
-      card.className = "producto";
-
-      card.innerHTML = `
-        <img src="${imagen}" alt="${nombre}">
+      div.innerHTML = `
+        <img src="${imagen}">
         <h3>${nombre}</h3>
-        <p>Precio: $${precio}</p>
-        <p>Stock: ${stock}</p>
-        <button>Comprar</button>
+        <p>$${precio}</p>
+        <button>Agregar</button>
       `;
 
-      contenedor.appendChild(card);
-    });
-  })
-  .catch(error => {
-    console.error("Error cargando productos:", error);
+      div.querySelector("button").addEventListener("click", () => {
+        agregarCarrito(nombre, precio);
+      });
+
+      contenedor.appendChild(div);
+    }
   });
+
+function agregarCarrito(nombre, precio) {
+  carrito.push({ nombre, precio: Number(precio) });
+  total += Number(precio);
+  mostrarCarrito();
+}
+
+function mostrarCarrito() {
+  const lista = document.getElementById("lista-carrito");
+  lista.innerHTML = "";
+
+  carrito.forEach(p => {
+    const li = document.createElement("li");
+    li.textContent = `${p.nombre} - $${p.precio}`;
+    lista.appendChild(li);
+  });
+
+  document.getElementById("total").textContent = total;
+}
+
+document.getElementById("vaciar").addEventListener("click", () => {
+  carrito = [];
+  total = 0;
+  mostrarCarrito();
+});
