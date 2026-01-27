@@ -9,10 +9,6 @@ fetch("productos.csv")
         const productos = filas.map(fila => {
             const datos = fila.split(",").map(d => d.trim());
 
-const id = datos[0];
-const nombre = datos[1];
-const precio = datos[2];
-const imagen = datos[3];
             return {
                 id,
                 nombre,
@@ -90,4 +86,5 @@ function vaciarCarrito() {
     carrito = [];
     mostrarCarrito();
 }
+
 
