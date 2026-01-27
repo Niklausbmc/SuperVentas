@@ -1,51 +1,57 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Tienda Online</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Tienda Online</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<div id="modal-carrito" class="modal">
-  <div class="modal-contenido">
-    <h2>🧾 Boleta de compra</h2>
 
-    <div id="lista-carrito"></div>
-
-    <h3>Total: S/ <span id="total">0</span></h3>
-
-    <button onclick="comprarWhatsApp()" class="btn-whatsapp">
-      🟢 Comprar por WhatsApp
-    </button>
-
-    <button onclick="cerrarCarrito()" class="btn-cerrar">
-      ❌ Cerrar
-    </button>
-  </div>
-</div>    
 <body>
 
-<header class="top">
-    <h2>🛍️ Mi Tienda</h2>
-    <input type="text" placeholder="Buscar productos...">
-</header>
+  <!-- MODAL CARRITO -->
+  <div id="modal-carrito" class="modal">
+    <div class="modal-contenido">
+      <h2>🧾 Boleta de compra</h2>
 
-<div class="categorias">
+      <div id="lista-carrito"></div>
+
+      <h3>Total: S/ <span id="total">0</span></h3>
+
+      <button onclick="comprarWhatsApp()" class="btn-whatsapp">
+        🟢 Comprar por WhatsApp
+      </button>
+
+      <button onclick="cerrarCarrito()" class="btn-cerrar">
+        ❌ Cerrar
+      </button>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="top">
+    <h2>🛒 Mi Tienda</h2>
+    <input type="text" placeholder="Buscar productos...">
+  </header>
+
+  <!-- CATEGORÍAS -->
+  <div class="categorias">
     <span>🔥 Ofertas</span>
     <span>👕 Ropa</span>
     <span>👟 Zapatos</span>
     <span>🎧 Electrónica</span>
     <span>🏠 Hogar</span>
-</div>
+  </div>
 
-<div id="productos" class="grid-productos"></div>
+  <!-- PRODUCTOS -->
+  <div id="productos" class="grid-productos"></div>
 
-<div class="carrito-flotante" onclick="abrirCarrito()">
+  <!-- CARRITO FLOTANTE -->
+  <div class="carrito-flotante" onclick="abrirCarrito()">
     🛒 <span id="contador">0</span>
-</div>
+  </div>
 
-<script src="script.js" defer></script>
+  <!-- SCRIPT -->
+  <script src="script.js" defer></script>
+
 </body>
 </html>
-
-
-
