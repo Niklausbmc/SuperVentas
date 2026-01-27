@@ -88,7 +88,7 @@ function actualizarCarrito() {
   });
 
   totalSpan.textContent = total;
-  contador.textContent = cantidad;
+  contador.textContent = cantidadTotal;
 }
 
 // =====================
@@ -139,4 +139,5 @@ function comprarWhatsApp() {
     "_blank"
   );
 }
+
 
