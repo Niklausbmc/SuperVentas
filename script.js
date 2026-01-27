@@ -10,18 +10,18 @@ function mostrarProductos(productos) {
     const contenedor = document.getElementById("productos");
     contenedor.innerHTML = "";
 
-    productos.forEach(p => {
-        contenedor.innerHTML += `
-            <div class="producto">
-                <img src="img/${p.imagen}" width="180">
-                <h3>${p.nombre}</h3>
-                <p>$${p.precio}</p>
-                <button onclick="agregarCarrito('${p.id}','${p.nombre}',${p.precio})">
-                    Agregar
-                </button>
-            </div>
-        `;
-    });
+productos.forEach(p => {
+    productosDiv.innerHTML += `
+        <div class="producto">
+            <img src="img/${p.imagen}">
+            <h4>${p.nombre}</h4>
+            <div class="precio">$${p.precio}</div>
+            <button onclick="agregarCarrito(${p.id})">
+                Agregar
+            </button>
+        </div>
+    `;
+});
 }
 
 function agregarCarrito(id, nombre, precio) {
@@ -135,6 +135,7 @@ function cerrarBoleta() {
     document.getElementById("boleta").classList.add("oculto");
 }
 mostrarCarrito();
+
 
 
 
