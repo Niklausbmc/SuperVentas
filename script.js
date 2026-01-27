@@ -1,149 +1,134 @@
+// ================== PRODUCTOS ==================
+const productos = [
+    {
+        id: 1,
+        nombre: "Ventilador",
+        precio: 22000,
+        imagen: "img/ventilador.jpg"
+    },
+    {
+        id: 2,
+        nombre: "Audífonos",
+        precio: 18000,
+        imagen: "img/audifonos.jpg"
+    },
+    {
+        id: 3,
+        nombre: "Zapatos",
+        precio: 35000,
+        imagen: "img/zapatos.jpg"
+    }
+];
+
+// ================== ELEMENTOS ==================
+const contenedor = document.getElementById("productos");
+const listaCarrito = document.getElementById("lista-carrito");
+const totalHTML = document.getElementById("total");
+const contadorHTML = document.getElementById("contador");
+
+// ================== CARRITO ==================
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-const productosDiv = document.getElementById("productos");
-const listaCarrito = document.getElementById("lista-carrito");
-const totalSpan = document.getElementById("total");
-const contador = document.getElementById("contador");
+// ================== MOSTRAR PRODUCTOS ==================
+function mostrarProductos() {
+    contenedor.innerHTML = "";
 
-// =====================
-// CARGAR PRODUCTOS CSV
-// =====================
-fetch("productos.csv")
-  .then(res => res.text())
-  .then(data => {
-    const filas = data.split("\n").slice(1);
+    productos.forEach(producto => {
+        contenedor.innerHTML += `
+            <div class="producto">
+                <img src="${producto.imagen}" alt="${producto.nombre}">
+                <h3>${producto.nombre}</h3>
+                <p>S/ ${producto.precio}</p>
+                <button onclick="agregarCarrito(${producto.id})">
+                    Agregar
+                </button>
+            </div>
+        `;
+    });
+}
 
-    filas.forEach(fila => {
-      if (!fila.trim()) return;
+// ================== AGREGAR AL CARRITO ==================
+function agregarCarrito(id) {
+    const producto = productos.find(p => p.id === id);
 
-      const [nombre, precio, imagen] = fila.split(",");
+    const existe = carrito.find(p => p.id === id);
 
-      const card = document.createElement("div");
-      card.className = "producto";
+    if (existe) {
+        existe.cantidad++;
+    } else {
+        carrito.push({ ...producto, cantidad: 1 });
+    }
 
-      card.innerHTML = `
-        <img src="${imagen.trim()}" alt="${nombre}">
-        <h3>${nombre}</h3>
-        <p>S/ ${precio}</p>
-        <button onclick="agregarCarrito('${nombre}', ${precio})">
-          Agregar
-        </button>
-      `;
+    guardarCarrito();
+    actualizarContador();
+}
 
-      productosDiv.appendChild(card);
+// ================== GUARDAR ==================
+function guardarCarrito() {
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+}
+
+// ================== CONTADOR ==================
+function actualizarContador() {
+    let totalCantidad = 0;
+
+    carrito.forEach(p => {
+        totalCantidad += p.cantidad;
     });
 
-    actualizarCarrito();
-  });
-
-// =====================
-// AGREGAR AL CARRITO
-// =====================
-function agregarCarrito(nombre, precio) {
-  const producto = carrito.find(p => p.nombre === nombre);
-
-  if (producto) {
-    producto.cantidad++;
-  } else {
-    carrito.push({
-      nombre,
-      precio,
-      cantidad: 1
-    });
-  }
-
-  guardar();
-  actualizarCarrito();
+    contadorHTML.textContent = totalCantidad;
 }
 
-// =====================
-// SUMAR
-// =====================
-function sumar(nombre) {
-  const producto = carrito.find(p => p.nombre === nombre);
-  producto.cantidad++;
-  guardar();
-  actualizarCarrito();
-}
-
-// =====================
-// RESTAR
-// =====================
-function restar(nombre) {
-  const producto = carrito.find(p => p.nombre === nombre);
-
-  producto.cantidad--;
-
-  if (producto.cantidad <= 0) {
-    carrito = carrito.filter(p => p.nombre !== nombre);
-  }
-
-  guardar();
-  actualizarCarrito();
-}
-
-// =====================
-// ACTUALIZAR CARRITO
-// =====================
-function actualizarCarrito() {
-  listaCarrito.innerHTML = "";
-
-  let total = 0;
-  let cantidadTotal = 0;
-
-  carrito.forEach(p => {
-    total += p.precio * p.cantidad;
-    cantidadTotal += p.cantidad;
-
-    listaCarrito.innerHTML += `
-      <div class="item-carrito">
-        <span>${p.nombre}</span>
-        <div class="controles">
-          <button onclick="restar('${p.nombre}')">−</button>
-          <span>${p.cantidad}</span>
-          <button onclick="sumar('${p.nombre}')">+</button>
-        </div>
-        <span>S/ ${p.precio * p.cantidad}</span>
-      </div>
-    `;
-  });
-
-  totalSpan.textContent = total;
-  contador.textContent = cantidadTotal;
-}
-
-// =====================
-// GUARDAR
-// =====================
-function guardar() {
-  localStorage.setItem("carrito", JSON.stringify(carrito));
-}
-
-// =====================
-// MODAL
-// =====================
+// ================== ABRIR CARRITO ==================
 function abrirCarrito() {
-  document.getElementById("modal-carrito").style.display = "flex";
+    document.getElementById("modal-carrito").style.display = "flex";
+    mostrarCarrito();
 }
 
+// ================== CERRAR ==================
 function cerrarCarrito() {
-  document.getElementById("modal-carrito").style.display = "none";
+    document.getElementById("modal-carrito").style.display = "none";
 }
 
-// =====================
-// WHATSAPP
-// =====================
+// ================== MOSTRAR CARRITO ==================
+function mostrarCarrito() {
+    listaCarrito.innerHTML = "";
+    let total = 0;
+
+    carrito.forEach(p => {
+        total += p.precio * p.cantidad;
+
+        listaCarrito.innerHTML += `
+            <div class="item-carrito">
+                <strong>${p.nombre}</strong><br>
+                Cantidad: ${p.cantidad} <br>
+                Precio: S/ ${p.precio * p.cantidad}
+            </div>
+        `;
+    });
+
+    totalHTML.textContent = total;
+}
+
+// ================== WHATSAPP ==================
 function comprarWhatsApp() {
-  let mensaje = "🧾 *Pedido:*%0A";
+    if (carrito.length === 0) {
+        alert("El carrito está vacío");
+        return;
+    }
 
-  carrito.forEach(p => {
-    mensaje += `- ${p.nombre} x${p.cantidad} = S/ ${p.precio * p.cantidad}%0A`;
-  });
+    let mensaje = "🛒 *Pedido de la tienda* %0A%0A";
 
-  mensaje += `%0A💰 Total: S/ ${totalSpan.textContent}`;
+    carrito.forEach(p => {
+        mensaje += `• ${p.nombre} x${p.cantidad} = S/ ${p.precio * p.cantidad}%0A`;
+    });
 
-  window.open(
-    "https://wa.me/5355030439?text=" + mensaje,
-    "_blank"
-  );
+    mensaje += `%0A💰 Total: S/ ${totalHTML.textContent}`;
+
+    const telefono = "5355030439"; // ← cambia por tu número
+    window.open(`https://wa.me/${telefono}?text=${mensaje}`, "_blank");
 }
+
+// ================== INICIAR ==================
+mostrarProductos();
+actualizarContador();
