@@ -1,4 +1,7 @@
 body {
+  background: red !important;
+}
+body {
     margin: 0;
     font-family: Arial;
     background: #eaeded;
@@ -72,4 +75,5 @@ body {
 #buscador {
     width: 40%;
     padding: 5px;
+
 }
