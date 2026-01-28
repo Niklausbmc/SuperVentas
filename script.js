@@ -1,3 +1,4 @@
+alert("JS funcionando");
 let productos = [];
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
@@ -230,3 +231,4 @@ function estacion(tipo) {
 
 // 🔥 activar estación
 estacion("invierno");
+
