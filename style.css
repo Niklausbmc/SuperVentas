@@ -202,3 +202,56 @@ header {
     transform: translateY(110vh);
   }
 }
+
+/* ===============================
+   EFECTOS DE ESTACIONES
+================================ */
+
+body.primavera {
+  background: linear-gradient(180deg, #e8fff0, #ffffff);
+}
+
+body.verano {
+  background: linear-gradient(180deg, #fff5cc, #ffffff);
+}
+
+body.otono {
+  background: linear-gradient(180deg, #ffe5cc, #ffffff);
+}
+
+body.invierno {
+  background: linear-gradient(180deg, #e6f3ff, #ffffff);
+}
+
+#efectos span {
+  position: fixed;
+  top: -40px;
+  animation: caer linear infinite;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.primavera::before {
+  content: "🌸";
+}
+
+.verano::before {
+  content: "☀️";
+}
+
+.otono::before {
+  content: "🍂";
+}
+
+.invierno::before {
+  content: "❄️";
+}
+
+@keyframes caer {
+  from {
+    transform: translateY(-50px);
+  }
+  to {
+    transform: translateY(110vh);
+  }
+}
