@@ -1,4 +1,3 @@
-alert("JS funcionando");
 let productos = [];
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
@@ -200,3 +199,4 @@ function activarEstacion() {
 }
 
 activarEstacion();
+
