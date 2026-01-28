@@ -1,3 +1,4 @@
 id;nombre;precio;stock;categoria;imagen
 1;ventilador;22000;10;electrodomesticos;img/ventilador.jpg
 2;zapatos;6500;2;zapatos;img/zapatos.jpg
+3;gafas;1000;10;prendas;img/gafas.jpg
