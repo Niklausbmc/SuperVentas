@@ -1,3 +1,8 @@
+import {
+  getFirestore,
+  collection,
+  addDoc
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import {
   getAuth,
@@ -52,5 +57,37 @@ window.logout = () => {
   signOut(auth).then(() => location.reload());
 };
 
+window.agregarProducto = async function () {
+  const nombre = document.getElementById("nombre").value;
+  const precio = Number(document.getElementById("precio").value);
+  const stock = Number(document.getElementById("stock").value);
+  const imagen = document.getElementById("imagen").value;
+
+  if (!nombre || !precio || !imagen) {
+    alert("Completa todos los campos");
+    return;
+  }
+
+  try {
+    await addDoc(collection(db, "productos"), {
+      nombre,
+      precio,
+      stock,
+      imagen,
+      fecha: new Date()
+    });
+
+    alert("✅ Producto guardado");
+
+    document.getElementById("nombre").value = "";
+    document.getElementById("precio").value = "";
+    document.getElementById("stock").value = "";
+    document.getElementById("imagen").value = "";
+
+  } catch (error) {
+    alert("❌ Error al guardar");
+    console.error(error);
+  }
+};
 
 
