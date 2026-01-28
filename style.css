@@ -137,5 +137,34 @@ header {
   box-shadow: 0 4px 10px rgba(0,0,0,.1);
 }
 
+/* 🌸 PRIMAVERA */
+.primavera {
+  background: linear-gradient(135deg, #fce7f3, #e0f2fe);
+  animation: fondoAnimado 12s ease infinite;
+}
+
+/* ☀️ VERANO */
+.verano {
+  background: linear-gradient(135deg, #fde68a, #f97316);
+  animation: fondoAnimado 10s ease infinite;
+}
+
+/* 🍂 OTOÑO */
+.otono {
+  background: linear-gradient(135deg, #fb923c, #92400e);
+  animation: fondoAnimado 14s ease infinite;
+}
+
+/* ❄️ INVIERNO */
+.invierno {
+  background: linear-gradient(135deg, #e0f2fe, #c7d2fe);
+  animation: fondoAnimado 16s ease infinite;
+}
+
+@keyframes fondoAnimado {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
 
