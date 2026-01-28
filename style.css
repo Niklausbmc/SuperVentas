@@ -1,6 +1,13 @@
 body {
-  background: linear-gradient(135deg, #f1f3f6, #e5e7eb);
+  background: radial-gradient(circle at top, #e0f2fe, #f1f3f6);
+  animation: fondoAnimado 8s ease-in-out infinite alternate;
 }
+
+@keyframes fondoAnimado {
+  from { filter: hue-rotate(0deg); }
+  to { filter: hue-rotate(15deg); }
+}
+
 header {
   background: #131921;
   color: white;
@@ -133,4 +140,5 @@ header {
   padding: 15px;
   box-shadow: 0 4px 10px rgba(0,0,0,.1);
 }
+
 
