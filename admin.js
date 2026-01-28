@@ -1,38 +1,33 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import {
-  getAuth,
-  signInWithEmailAndPassword,
-  onAuthStateChanged,
-  signOut
+import { 
+  getAuth, 
+  signInWithEmailAndPassword 
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-import {
-  getFirestore,
-  collection,
-  addDoc
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
 const firebaseConfig = {
-  apiKey: "AIzaSyBm8gyyEp04P7GAWyhP3XP_MUcD9ggNASH0",
+  apiKey: "TU_API_KEY",
   authDomain: "superventas-d50e2.firebaseapp.com",
   projectId: "superventas-d50e2",
-  storageBucket: "superventas-d50e2.appspot.com",
-  messagingSenderId: "282791580507",
-  appId: "1:282791580507:web:4bc8f815fb320a1e24c07e"
 };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const db = getFirestore(app);
 
-// 👉 LOGIN
-window.login = function () {
+document.getElementById("loginForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
   signInWithEmailAndPassword(auth, email, password)
-    .catch(err => alert("❌ Datos incorrectos"));
-};
+    .then(() => {
+      window.location.href = "panel.html";
+    })
+    .catch((error) => {
+      alert("Correo o contraseña incorrectos");
+      console.log(error.message);
+    });
+});
 
 // 👉 VERIFICAR SESIÓN
 onAuthStateChanged(auth, user => {
@@ -78,3 +73,4 @@ window.agregarProducto = async function () {
 window.logout = function () {
   signOut(auth);
 };
+
