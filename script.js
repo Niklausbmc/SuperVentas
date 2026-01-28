@@ -180,3 +180,28 @@ function fondoPorEstacion() {
 }
 
 fondoPorEstacion();
+
+function efectoEstacion() {
+  const mes = new Date().getMonth() + 1;
+  const contenedor = document.getElementById("efectos");
+
+  contenedor.innerHTML = "";
+
+  let tipo = "";
+
+  if (mes >= 3 && mes <= 5) tipo = "primavera";
+  else if (mes >= 6 && mes <= 8) tipo = "verano";
+  else if (mes >= 9 && mes <= 11) tipo = "otono";
+  else tipo = "invierno";
+
+  for (let i = 0; i < 30; i++) {
+    const span = document.createElement("span");
+    span.className = tipo;
+    span.style.left = Math.random() * 100 + "vw";
+    span.style.animationDuration = 5 + Math.random() * 10 + "s";
+    span.style.fontSize = 12 + Math.random() * 20 + "px";
+    contenedor.appendChild(span);
+  }
+}
+
+efectoEstacion();
