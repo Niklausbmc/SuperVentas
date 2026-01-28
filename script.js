@@ -149,6 +149,34 @@ window.finalizarCompra = () => {
   mostrarCarrito();
 };
 
+window.enviarWhatsApp = function () {
+
+  if (carrito.length === 0) {
+    alert("El carrito está vacío");
+    return;
+  }
+
+  let mensaje = "🛒 *Pedido SuperVentas*%0A%0A";
+
+  carrito.forEach(p => {
+    mensaje += `• ${p.nombre} x${p.cantidad} = S/ ${p.precio * p.cantidad}%0A`;
+  });
+
+  mensaje += `%0A*Total:* S/ ${totalSpan.textContent}%0A`;
+
+  // método de pago
+  const metodo = document.querySelector('input[name="pago"]:checked').value;
+  mensaje += `*Pago:* ${metodo}%0A`;
+
+  mensaje += `%0A📍 *Envío a coordinar*`;
+
+  const telefono = "5355030439"; // 👈 CAMBIA ESTE NÚMERO
+
+  const url = `https://wa.me/${telefono}?text=${mensaje}`;
+
+  window.open(url, "_blank");
+};
+
 // ============================
 // 🔥 CARGAR PRODUCTOS
 // ============================
@@ -182,5 +210,6 @@ async function cargarProductos() {
 // ============================
 cargarProductos();
 mostrarCarrito();
+
 
 
