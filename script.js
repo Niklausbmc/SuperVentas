@@ -167,5 +167,16 @@ function agregarCarrito(id) {
   actualizarTodo();
 }
 
+function fondoPorEstacion() {
+  const mes = new Date().getMonth() + 1;
+  let estacion = "";
 
+  if (mes >= 3 && mes <= 5) estacion = "primavera";
+  else if (mes >= 6 && mes <= 8) estacion = "verano";
+  else if (mes >= 9 && mes <= 11) estacion = "otono";
+  else estacion = "invierno";
 
+  document.body.classList.add(estacion);
+}
+
+fondoPorEstacion();
