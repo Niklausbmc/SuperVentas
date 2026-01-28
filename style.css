@@ -1,11 +1,7 @@
 body {
-  background: radial-gradient(circle at top, #e0f2fe, #f1f3f6);
-  animation: fondoAnimado 8s ease-in-out infinite alternate;
-}
-
-@keyframes fondoAnimado {
-  from { filter: hue-rotate(0deg); }
-  to { filter: hue-rotate(15deg); }
+  background: linear-gradient(270deg, #60a5fa, #f472b6, #34d399);
+  background-size: 600% 600%;
+  animation: fondoAnimado 12s ease infinite;
 }
 
 header {
@@ -140,5 +136,6 @@ header {
   padding: 15px;
   box-shadow: 0 4px 10px rgba(0,0,0,.1);
 }
+
 
 
