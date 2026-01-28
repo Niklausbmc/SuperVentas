@@ -146,6 +146,26 @@ function filtrarProductos() {
   mostrarProductos(filtrados);
 }
 
+function agregarCarrito(id) {
+  const producto = productos.find(p => p.id === id);
+
+  if (!producto) return;
+
+  const existe = carrito.find(p => p.id === id);
+
+  if (existe) {
+    existe.cantidad++;
+  } else {
+    carrito.push({
+      ...producto,
+      cantidad: 1
+    });
+  }
+
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+
+  actualizarTodo();
+}
 
 
 
