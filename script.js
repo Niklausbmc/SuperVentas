@@ -51,7 +51,7 @@ function guardarCarrito() {
 // ============================
 // ➕ AGREGAR
 // ============================
-function agregarAlCarrito(producto) {
+window.agregarAlCarrito = function (producto) {
   const existe = carrito.find(p => p.id === producto.id);
 
   if (existe) {
@@ -182,3 +182,4 @@ async function cargarProductos() {
 // ============================
 cargarProductos();
 mostrarCarrito();
+
