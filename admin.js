@@ -28,15 +28,16 @@ const panel = document.getElementById("panel");
 loginForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
-const email = document.getElementById("email").value;
-const password = document.getElementById("password").value;
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
 
   signInWithEmailAndPassword(auth, email, password)
     .then(() => {
       alert("Bienvenido administrador");
     })
-    .catch(() => {
+    .catch((error) => {
       alert("Correo o contraseña incorrectos");
+      console.log(error.message);
     });
 });
 
@@ -72,4 +73,5 @@ window.agregarProducto = async () => {
 
   alert("Producto agregado");
 };
+
 
