@@ -29,18 +29,24 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 // ELEMENTOS
-const loginBox = document.getElementById("login");
-const panelBox = document.getElementById("panel");
+function mostrarPanel(logueado) {
+  const loginBox = document.getElementById("login");
+  const panelBox = document.getElementById("panel");
 
-// 🔐 CONTROL DE SESIÓN
-onAuthStateChanged(auth, (user) => {
-  if (user) {
+  if (!loginBox || !panelBox) return;
+
+  if (logueado) {
     loginBox.style.display = "none";
     panelBox.style.display = "block";
   } else {
     loginBox.style.display = "block";
     panelBox.style.display = "none";
   }
+}
+
+// 🔐 CONTROL DE SESIÓN
+onAuthStateChanged(auth, (user) => {
+  mostrarPanel(!!user);
 });
 
 // LOGIN
@@ -91,3 +97,4 @@ window.agregarProducto = async () => {
 window.cerrarSesion = () => {
   signOut(auth);
 };
+
