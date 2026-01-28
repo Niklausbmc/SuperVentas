@@ -77,7 +77,7 @@ window.agregarProducto = async () => {
       nombre,
       precio,
       stock,
-      imagen
+      imagen,
     });
 
     alert("✅ Producto guardado correctamente");
@@ -104,5 +104,6 @@ onAuthStateChanged(auth, (user) => {
     document.getElementById("panel").style.display = "block";
   }
 });
+
 
 
