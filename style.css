@@ -167,4 +167,51 @@ header {
   100% { background-position: 0% 50%; }
 }
 
+#efectos {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* ELEMENTOS */
+#efectos span {
+  position: absolute;
+  top: -50px;
+  animation: caer linear infinite;
+  opacity: 0.8;
+}
+
+/* 🌸 PRIMAVERA */
+.primavera::before {
+  content: "🌸";
+}
+
+/* ☀️ VERANO */
+.verano::before {
+  content: "☀️";
+}
+
+/* 🍂 OTOÑO */
+.otono::before {
+  content: "🍂";
+}
+
+/* ❄️ INVIERNO */
+.invierno::before {
+  content: "❄️";
+}
+
+@keyframes caer {
+  from {
+    transform: translateY(-50px);
+  }
+  to {
+    transform: translateY(110vh);
+  }
+}
 
