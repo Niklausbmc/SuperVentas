@@ -232,3 +232,31 @@ function estacion(tipo) {
 // 🔥 activar estación
 estacion("invierno");
 
+// ===============================
+// EFECTO DE ESTACIONES AUTOMÁTICO
+// ===============================
+
+const efectos = document.createElement("div");
+efectos.id = "efectos";
+document.body.appendChild(efectos);
+
+const mes = new Date().getMonth(); // 0 - 11
+
+let estacion = "";
+
+if (mes >= 2 && mes <= 4) estacion = "primavera";
+else if (mes >= 5 && mes <= 7) estacion = "verano";
+else if (mes >= 8 && mes <= 10) estacion = "otono";
+else estacion = "invierno";
+
+document.body.classList.add(estacion);
+
+// crear partículas
+for (let i = 0; i < 30; i++) {
+  const span = document.createElement("span");
+  span.className = estacion;
+  span.style.left = Math.random() * 100 + "vw";
+  span.style.animationDuration = 5 + Math.random() * 5 + "s";
+  span.style.fontSize = 16 + Math.random() * 20 + "px";
+  efectos.appendChild(span);
+}
