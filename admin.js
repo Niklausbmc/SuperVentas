@@ -56,14 +56,14 @@ document.getElementById("loginForm").addEventListener("submit", (e) => {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
-  signInWithEmailAndPassword(auth, email, password)
-    .then(() => {
-      alert("✅ Bienvenido administrador");
-    })
-    .catch(() => {
-      alert("❌ Correo o contraseña incorrectos");
-    });
-});
+signInWithEmailAndPassword(auth, email, password)
+  .then(() => {
+    document.getElementById("loginForm").style.display = "none";
+    document.getElementById("panel").style.display = "block";
+  })
+  .catch((error) => {
+    alert("Correo o contraseña incorrectos");
+  });
 
 // AGREGAR PRODUCTO
 window.agregarProducto = async () => {
@@ -98,5 +98,11 @@ window.cerrarSesion = () => {
   signOut(auth);
 };
 
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    document.getElementById("loginForm").style.display = "none";
+    document.getElementById("panel").style.display = "block";
+  }
+});
 
 
