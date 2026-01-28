@@ -52,9 +52,15 @@ form.addEventListener("submit", (e) => {
 
 // 🔄 MANTENER SESIÓN
 onAuthStateChanged(auth, (user) => {
+  const login = document.getElementById("loginForm");
+  const panel = document.getElementById("panel");
+
   if (user) {
-    document.getElementById("loginForm").style.display = "none";
-    document.getElementById("panel").style.display = "block";
+    login.style.display = "none";
+    panel.style.display = "block";
+  } else {
+    panel.style.display = "none";
+    login.style.display = "block";
   }
 });
 
@@ -92,3 +98,4 @@ window.cerrarSesion = () => {
   signOut(auth);
   location.reload();
 };
+
