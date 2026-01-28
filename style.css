@@ -186,22 +186,21 @@ header {
   opacity: 0.8;
 }
 
-/* 🌸 PRIMAVERA */
+.primavera {
+  font-size: 22px;
+}
 .primavera::before {
   content: "🌸";
 }
 
-/* ☀️ VERANO */
 .verano::before {
   content: "☀️";
 }
 
-/* 🍂 OTOÑO */
 .otono::before {
   content: "🍂";
 }
 
-/* ❄️ INVIERNO */
 .invierno::before {
   content: "❄️";
 }
@@ -221,3 +220,4 @@ header {
   pointer-events: none;
   z-index: 9999;
 }
+
