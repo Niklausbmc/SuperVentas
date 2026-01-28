@@ -1,49 +1,45 @@
-// 🔥 FIREBASE
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-app.js";
-import {
-  getFirestore,
-  collection,
-  onSnapshot
-} from "https://www.gstatic.com/firebasejs/12.8.0/firebase-firestore.js";
+// 🔥 Firebase
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-// 🔑 Configuración Firebase
+// ⚠️ PEGA AQUÍ TU CONFIG REAL
 const firebaseConfig = {
-  apiKey: "AIzaSyBm8gvyEpo4P7GAWyhP3XP_MUcD9gNA5H8",
-  authDomain: "superventas-d50e2.firebaseapp.com",
-  projectId: "superventas-d50e2",
-  storageBucket: "superventas-d50e2.firebasestorage.app",
-  messagingSenderId: "282791580507",
-  appId: "1:282791580507:web:4bc8f815fb320a1e24c07e"
+  apiKey: "TU_API_KEY",
+  authDomain: "TU_PROYECTO.firebaseapp.com",
+  projectId: "TU_PROYECTO",
+  storageBucket: "TU_PROYECTO.appspot.com",
+  messagingSenderId: "XXXX",
+  appId: "XXXX"
 };
 
 // Inicializar Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-let productos = [];
-let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
+// CONTENEDOR
 const contenedor = document.getElementById("productos");
-const lista = document.getElementById("listaCarrito");
-const totalHTML = document.getElementById("total");
-const contador = document.getElementById("contador");
 
-onSnapshot(collection(db, "productos"), (snapshot) => {
+// LEER PRODUCTOS
+async function cargarProductos() {
+  const querySnapshot = await getDocs(collection(db, "productos"));
+
   contenedor.innerHTML = "";
 
-  snapshot.forEach((doc) => {
+  querySnapshot.forEach((doc) => {
     const p = doc.data();
 
     contenedor.innerHTML += `
       <div class="producto">
-        <img src="${p.imagen}" />
+        <img src="${p.imagen}">
         <h3>${p.nombre}</h3>
         <p>$${p.precio}</p>
-        <p>Stock: ${p.stock}</p>
         <button>Agregar</button>
       </div>
     `;
   });
-});
+}
+
+cargarProductos();
 
 function mostrarProductos(lista = productos) {
   contenedor.innerHTML = "";
@@ -213,5 +209,6 @@ function crearEfecto() {
 
 // crear continuamente
 setInterval(crearEfecto, 500);
+
 
 
