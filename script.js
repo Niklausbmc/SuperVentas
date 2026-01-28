@@ -22,6 +22,7 @@ function cargarCSV() {
           id: Number(id),
           nombre,
           precio: Number(precio),
+          stock: Number(stock)
           imagen
         });
       });
@@ -127,6 +128,7 @@ function enviarWhatsApp() {
 
   window.open(`https://wa.me/5355030439?text=${msg}`);
 }
+
 
 
 
