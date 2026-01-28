@@ -28,8 +28,8 @@ const panel = document.getElementById("panel");
 loginForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const email = email.value;
-  const password = password.value;
+const email = document.getElementById("email").value;
+const password = document.getElementById("password").value;
 
   signInWithEmailAndPassword(auth, email, password)
     .then(() => {
@@ -72,3 +72,4 @@ window.agregarProducto = async () => {
 
   alert("Producto agregado");
 };
+
