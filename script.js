@@ -1,3 +1,24 @@
+// 🔥 FIREBASE
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-app.js";
+import {
+  getFirestore,
+  collection,
+  onSnapshot
+} from "https://www.gstatic.com/firebasejs/12.8.0/firebase-firestore.js";
+
+// 🔑 Configuración Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyBm8gvyEpo4P7GAWyhP3XP_MUcD9gNA5H8",
+  authDomain: "superventas-d50e2.firebaseapp.com",
+  projectId: "superventas-d50e2",
+  storageBucket: "superventas-d50e2.firebasestorage.app",
+  messagingSenderId: "282791580507",
+  appId: "1:282791580507:web:4bc8f815fb320a1e24c07e"
+};
+
+// Inicializar Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 let productos = [];
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
@@ -6,32 +27,25 @@ const lista = document.getElementById("listaCarrito");
 const totalHTML = document.getElementById("total");
 const contador = document.getElementById("contador");
 
-cargarCSV();
+const contenedor = document.getElementById("productos");
 
-function cargarCSV() {
-  fetch("productos.csv")
-    .then(res => res.text())
-    .then(texto => {
-      const filas = texto.trim().split("\n");
-      filas.shift(); // quitar encabezado
+onSnapshot(collection(db, "productos"), (snapshot) => {
+  contenedor.innerHTML = "";
 
-      filas.forEach(fila => {
-        const [id, nombre, precio, stock, categoria, imagen] = fila.split(";");
+  snapshot.forEach((doc) => {
+    const p = doc.data();
 
-        productos.push({
-          id: Number(id),
-          nombre: nombre,
-          precio: Number(precio),
-          stock: Number(stock),
-          categoria: categoria,
-          imagen: imagen
-        });
-      });
-
-      mostrarProductos();
-      actualizarTodo();
-    });
-}
+    contenedor.innerHTML += `
+      <div class="producto">
+        <img src="${p.imagen}" />
+        <h3>${p.nombre}</h3>
+        <p>$${p.precio}</p>
+        <p>Stock: ${p.stock}</p>
+        <button>Agregar</button>
+      </div>
+    `;
+  });
+});
 
 function mostrarProductos(lista = productos) {
   contenedor.innerHTML = "";
@@ -201,3 +215,4 @@ function crearEfecto() {
 
 // crear continuamente
 setInterval(crearEfecto, 500);
+
