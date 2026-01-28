@@ -1,9 +1,6 @@
 body {
-  margin: 0;
-  font-family: Arial;
-  background: #f2f2f2;
+  background: linear-gradient(135deg, #f1f3f6, #e5e7eb);
 }
-
 header {
   background: #131921;
   color: white;
@@ -136,3 +133,4 @@ header {
   padding: 15px;
   box-shadow: 0 4px 10px rgba(0,0,0,.1);
 }
+
