@@ -5,59 +5,62 @@
   <title>SuperVentas</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<div id="efectos"></div>
-  
-<header>
-  <h1>🛒 SuperVentas</h1>
+  <div id="efectos"></div>
 
-  <div class="carrito-btn" onclick="abrirCarrito()">
-    🛍️ <span id="contador">0</span>
+  <header>
+    <h1>🛒 SuperVentas</h1>
+
+    <div class="carrito-btn" onclick="abrirCarrito()">
+      🧺 <span id="contador">0</span>
+    </div>
+  </header>
+
+  <!-- BUSCADOR -->
+  <div class="buscador">
+    <input
+      type="text"
+      id="buscar"
+      placeholder="🔍 Buscar productos..."
+      onkeyup="filtrarProductos()"
+    >
   </div>
-</header>
 
-<div class="buscador">
-  <input 
-    type="text" 
-    id="buscar"
-    placeholder="🔍 Buscar productos..."
-    onkeyup="filtrarProductos()"
-  >
-</div>
-  
-<main id="productos"></main>
-  <!-- Productos -->
-</main>
+  <!-- PRODUCTOS -->
+  <main id="productos" class="productos"></main>
 
-<!-- BOLETA -->
-<div id="modalCarrito" class="modal">
-  <div class="boleta">
-    <h2>🧾 Boleta de compra</h2>
+  <!-- MODAL CARRITO -->
+  <div id="modalCarrito" class="modal">
+    <div class="boleta">
 
-    <div id="listaCarrito"></div>
+      <h2>🧾 Boleta de compra</h2>
 
-    <h3>Total: S/ <span id="total">0</span></h3>
+      <div id="listaCarrito"></div>
 
-    <h4>Método de pago</h4>
-    <label><input type="radio" name="pago" value="Yape" checked> Yape</label>
-    <label><input type="radio" name="pago" value="Plin"> Plin</label>
-    <label><input type="radio" name="pago" value="Transferencia"> Transferencia</label>
-    <label><input type="radio" name="pago" value="Efectivo"> Efectivo</label>
+      <h3>Total: S/ <span id="total">0</span></h3>
 
-    <button class="btn-finalizar" onclick="enviarWhatsApp()">Enviar por WhatsApp</button>
-    <button class="btn-cerrar" onclick="cerrarCarrito()">Cerrar</button>
+      <h4>Método de pago</h4>
+      <label><input type="radio" name="pago" value="Yape" checked> Yape</label>
+      <label><input type="radio" name="pago" value="Plin"> Plin</label>
+      <label><input type="radio" name="pago" value="Transferencia"> Transferencia</label>
+      <label><input type="radio" name="pago" value="Efectivo"> Efectivo</label>
+
+      <br><br>
+
+      <button class="btn-finalizar" onclick="finalizarCompra()">
+        Finalizar compra
+      </button>
+
+      <button class="btn-cerrar" onclick="cerrarCarrito()">
+        Cerrar
+      </button>
+
+    </div>
   </div>
-</div>
-<div id="productos" class="productos"></div>
 
-<script type="module" src="script.js"></script>
+  <script src="script.js"></script>
+
 </body>
 </html>
-
-<div id="efectos"></div>
-
-
-
-
-
