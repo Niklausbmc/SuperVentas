@@ -1,17 +1,19 @@
-// 🔥 Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { 
-  getAuth, 
+import {
+  getAuth,
   signInWithEmailAndPassword,
   onAuthStateChanged,
   signOut
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-// 🔧 tu configuración real
+// 🔥 TU CONFIG REAL (PEGA LA TUYA)
 const firebaseConfig = {
-  apiKey: "Klaus97*",
+  apiKey: "AQUI_TU_API_KEY",
   authDomain: "superventas-d50e2.firebaseapp.com",
   projectId: "superventas-d50e2",
+  storageBucket: "superventas-d50e2.appspot.com",
+  messagingSenderId: "XXXX",
+  appId: "XXXX"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -32,12 +34,12 @@ form.addEventListener("submit", (e) => {
       document.getElementById("panel").style.display = "block";
     })
     .catch((error) => {
-      alert("❌ Correo o contraseña incorrectos");
+      alert(error.message);
       console.error(error);
     });
 });
 
-// 🔒 Mantener sesión
+// 🔁 mantener sesión
 onAuthStateChanged(auth, (user) => {
   if (user) {
     document.getElementById("loginForm").style.display = "none";
@@ -45,28 +47,9 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
-// 🚪 Logout
+// 🚪 cerrar sesión
 window.logout = () => {
-  signOut(auth);
-  location.reload();
+  signOut(auth).then(() => location.reload());
 };
-
-// agregar producto
-window.agregarProducto = async () => {
-  const nombre = document.getElementById("nombre").value;
-  const precio = Number(document.getElementById("precio").value);
-  const stock = Number(document.getElementById("stock").value);
-  const imagen = document.getElementById("imagen").value;
-
-  await addDoc(collection(db, "productos"), {
-    nombre,
-    precio,
-    stock,
-    imagen
-  });
-
-  alert("Producto agregado");
-};
-
 
 
