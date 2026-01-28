@@ -5,32 +5,32 @@
   <title>Admin SuperVentas</title>
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<h2 id="titulo">🔐 Login Administrador</h2>
+  <h2>🔐 Login Administrador</h2>
 
-<div id="login">
-  <input type="email" id="email" placeholder="Correo">
-  <input type="password" id="password" placeholder="Contraseña">
-  <button onclick="login()">Entrar</button>
-</div>
+  <!-- LOGIN -->
+  <form id="loginForm">
+    <input type="email" id="email" placeholder="Correo" required>
+    <input type="password" id="password" placeholder="Contraseña" required>
+    <button type="submit">Entrar</button>
+  </form>
 
-<div id="panel" style="display:none">
+  <!-- PANEL -->
+  <div id="panel" style="display:none">
+    <h2>⚙ Panel Administrador</h2>
 
-  <h2>🛠 Panel Administrador</h2>
+    <input type="text" id="nombre" placeholder="Producto">
+    <input type="number" id="precio" placeholder="Precio">
+    <input type="number" id="stock" placeholder="Stock">
+    <input type="text" id="imagen" placeholder="imagen.jpg">
 
-  <input type="text" id="nombre" placeholder="Producto">
-  <input type="number" id="precio" placeholder="Precio">
-  <input type="number" id="stock" placeholder="Stock">
-  <input type="text" id="imagen" placeholder="imagen.jpg">
+    <br><br>
 
-  <button onclick="agregarProducto()">Guardar producto</button>
-  <button onclick="logout()">Cerrar sesión</button>
+    <button onclick="agregarProducto()">Guardar producto</button>
+    <button onclick="logout()">Cerrar sesión</button>
+  </div>
 
-</div>
-
-<script type="module" src="admin.js"></script>
-
+  <script type="module" src="admin.js"></script>
 </body>
 </html>
