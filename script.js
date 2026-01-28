@@ -33,18 +33,23 @@ function cargarCSV() {
     });
 }
 
-function mostrarProductos() {
+function mostrarProductos(lista = productos) {
   contenedor.innerHTML = "";
 
-  productos.forEach(p => {
-    contenedor.innerHTML += `
-      <div class="producto">
-        <img src="${p.imagen}">
-        <h3>${p.nombre}</h3>
-        <p>S/ ${p.precio}</p>
-        <button onclick="agregar(${p.id})">Agregar</button>
-      </div>
+  lista.forEach(p => {
+    const div = document.createElement("div");
+    div.className = "producto";
+
+    div.innerHTML = `
+      <img src="${p.imagen}">
+      <h3>${p.nombre}</h3>
+      <p>S/ ${p.precio}</p>
+      <button onclick="agregarCarrito(${p.id})">
+        Agregar
+      </button>
     `;
+
+    contenedor.appendChild(div);
   });
 }
 
@@ -130,6 +135,16 @@ function enviarWhatsApp() {
   window.open(`https://wa.me/5355030439?text=${msg}`);
 }
 
+function filtrarProductos() {
+  const texto = document.getElementById("buscar").value.toLowerCase();
+
+  const filtrados = productos.filter(p =>
+    p.nombre.toLowerCase().includes(texto) ||
+    p.categoria.toLowerCase().includes(texto)
+  );
+
+  mostrarProductos(filtrados);
+}
 
 
 
