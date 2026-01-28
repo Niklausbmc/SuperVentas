@@ -16,7 +16,7 @@ import {
 // 🔥 TU CONFIG
 const firebaseConfig = {
   apiKey: "AIzaSyBm8gyvEpo4P7GAWyhP3XP_MUcD9gNA5H8",
-  authDomain: "superventas-d50e2.firebaseapp.com",
+  authDomain: "superventas-d50e2.web.app",
   projectId: "superventas-d50e2",
   storageBucket: "superventas-d50e2.appspot.com",
   messagingSenderId: "282791580507",
@@ -97,4 +97,5 @@ window.agregarProducto = async () => {
 window.cerrarSesion = () => {
   signOut(auth);
 };
+
 
