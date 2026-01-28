@@ -27,8 +27,6 @@ const lista = document.getElementById("listaCarrito");
 const totalHTML = document.getElementById("total");
 const contador = document.getElementById("contador");
 
-const contenedor = document.getElementById("productos");
-
 onSnapshot(collection(db, "productos"), (snapshot) => {
   contenedor.innerHTML = "";
 
@@ -215,4 +213,5 @@ function crearEfecto() {
 
 // crear continuamente
 setInterval(crearEfecto, 500);
+
 
