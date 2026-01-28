@@ -8,12 +8,12 @@ import {
 
 // 🔥 TU CONFIG REAL (PEGA LA TUYA)
 const firebaseConfig = {
-  apiKey: "AQUI_TU_API_KEY",
+  apiKey: "AIzaSyBm8gvyEpo4P7GAWyhP3XP_MUcD9gNA5H8",
   authDomain: "superventas-d50e2.firebaseapp.com",
   projectId: "superventas-d50e2",
   storageBucket: "superventas-d50e2.appspot.com",
-  messagingSenderId: "XXXX",
-  appId: "XXXX"
+  messagingSenderId: "282791580507",
+  appId: "1:282791580507:web:4bc8f815fb320a1e24c07e"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -51,5 +51,6 @@ onAuthStateChanged(auth, (user) => {
 window.logout = () => {
   signOut(auth).then(() => location.reload());
 };
+
 
 
