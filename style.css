@@ -183,8 +183,7 @@ header {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 9999;
-  overflow: hidden;
+  z-index: 0;
 }
 
 .efecto {
@@ -254,4 +253,9 @@ body.invierno {
   to {
     transform: translateY(110vh);
   }
+}
+
+main, header {
+  position: relative;
+  z-index: 10;
 }
