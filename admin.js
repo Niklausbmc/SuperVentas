@@ -98,12 +98,3 @@ window.cerrarSesion = () => {
   signOut(auth);
 };
 
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    document.getElementById("loginForm").style.display = "none";
-    document.getElementById("panel").style.display = "block";
-  }
-});
-
-
-
