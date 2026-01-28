@@ -24,6 +24,18 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    // usuario logueado
+    document.getElementById("login").style.display = "none";
+    document.getElementById("panel").style.display = "block";
+  } else {
+    // no logueado
+    document.getElementById("login").style.display = "block";
+    document.getElementById("panel").style.display = "none";
+  }
+});
+
 // 🔐 LOGIN
 const form = document.getElementById("loginForm");
 
@@ -33,15 +45,14 @@ form.addEventListener("submit", (e) => {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
-  signInWithEmailAndPassword(auth, email, password)
-    .then(() => {
-      document.getElementById("loginForm").style.display = "none";
-      document.getElementById("panel").style.display = "block";
-    })
-    .catch((error) => {
-      alert(error.message);
-      console.error(error);
-    });
+signInWithEmailAndPassword(auth, email, password)
+  .then(() => {
+    alert("✅ Bienvenido administrador");
+  })
+  .catch((error) => {
+    alert("❌ Correo o contraseña incorrectos");
+    console.error(error);
+  });
 });
 
 // 🔁 mantener sesión
@@ -89,5 +100,6 @@ window.agregarProducto = async function () {
     console.error(error);
   }
 };
+
 
 
