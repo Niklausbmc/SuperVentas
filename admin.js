@@ -15,13 +15,13 @@ import {
 
 // 🔥 TU CONFIG
 const firebaseConfig = {
-  apiKey: "AIzaSyBm8gyvEpo4P7GAWyhP3XP_MUcD9gNA5H8",
-  authDomain: "superventas-d50e2.web.app",
+  apiKey: "AIzaSyBm8gvyEpo4P7GAWyhP3XP_MUcD9gNA5H8",
+  authDomain: "superventas-d50e2.firebaseapp.com",
   projectId: "superventas-d50e2",
-  storageBucket: "superventas-d50e2.appspot.com",
+  storageBucket: "superventas-d50e2.firebasestorage.app",
   messagingSenderId: "282791580507",
   appId: "1:282791580507:web:4bc8f815fb320a1e24c07e"
-};
+};;
 
 // INIT
 const app = initializeApp(firebaseConfig);
@@ -97,5 +97,6 @@ window.agregarProducto = async () => {
 window.cerrarSesion = () => {
   signOut(auth);
 };
+
 
 
