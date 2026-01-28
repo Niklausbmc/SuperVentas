@@ -167,36 +167,37 @@ function agregarCarrito(id) {
   actualizarTodo();
 }
 
-// ===============================
-// EFECTO DE ESTACIONES (FINAL)
-// ===============================
+// ============================
+// EFECTO DE ESTACIONES
+// ============================
 
-const efectos = document.createElement("div");
-efectos.id = "efectos";
-document.body.appendChild(efectos);
+const estaciones = ["primavera", "verano", "otono", "invierno"];
+let estacionActual = estaciones[new Date().getMonth() % 4];
 
-function activarEstacion() {
-  const mes = new Date().getMonth() + 1;
-  let tipo = "";
+document.body.classList.add(estacionActual);
 
-  if (mes >= 3 && mes <= 5) tipo = "primavera";
-  else if (mes >= 6 && mes <= 8) tipo = "verano";
-  else if (mes >= 9 && mes <= 11) tipo = "otono";
-  else tipo = "invierno";
+const efectos = document.getElementById("efectos");
 
-  document.body.className = tipo;
+function crearEfecto() {
+  const el = document.createElement("div");
+  el.classList.add("efecto");
 
-  efectos.innerHTML = "";
+  el.style.left = Math.random() * 100 + "vw";
+  el.style.animationDuration = (5 + Math.random() * 5) + "s";
+  el.style.fontSize = (12 + Math.random() * 20) + "px";
 
-  for (let i = 0; i < 30; i++) {
-    const span = document.createElement("span");
-    span.className = tipo;
-    span.style.left = Math.random() * 100 + "vw";
-    span.style.animationDuration = 5 + Math.random() * 10 + "s";
-    span.style.fontSize = 15 + Math.random() * 25 + "px";
-    efectos.appendChild(span);
-  }
+  // símbolo según estación
+  if (estacionActual === "primavera") el.innerHTML = "🌸";
+  if (estacionActual === "verano") el.innerHTML = "☀️";
+  if (estacionActual === "otono") el.innerHTML = "🍂";
+  if (estacionActual === "invierno") el.innerHTML = "❄️";
+
+  efectos.appendChild(el);
+
+  setTimeout(() => {
+    el.remove();
+  }, 10000);
 }
 
-activarEstacion();
-
+// crear continuamente
+setInterval(crearEfecto, 500);
