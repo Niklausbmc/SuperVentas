@@ -2,25 +2,35 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Panel Administrador</title>
+  <title>Admin SuperVentas</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <h1>🛠 Panel Administrador</h1>
+<h2 id="titulo">🔐 Login Administrador</h2>
 
-  <div class="admin-form">
+<div id="login">
+  <input type="email" id="email" placeholder="Correo">
+  <input type="password" id="password" placeholder="Contraseña">
+  <button onclick="login()">Entrar</button>
+</div>
 
-    <input type="text" id="nombre" placeholder="Nombre del producto">
-    <input type="number" id="precio" placeholder="Precio">
-    <input type="number" id="stock" placeholder="Stock">
-    <input type="text" id="imagen" placeholder="imagen.jpg">
+<div id="panel" style="display:none">
 
-    <button onclick="agregarProducto()">Guardar producto</button>
+  <h2>🛠 Panel Administrador</h2>
 
-  </div>
+  <input type="text" id="nombre" placeholder="Producto">
+  <input type="number" id="precio" placeholder="Precio">
+  <input type="number" id="stock" placeholder="Stock">
+  <input type="text" id="imagen" placeholder="imagen.jpg">
 
-  <script type="module" src="admin.js"></script>
+  <button onclick="agregarProducto()">Guardar producto</button>
+  <button onclick="logout()">Cerrar sesión</button>
+
+</div>
+
+<script type="module" src="admin.js"></script>
+
 </body>
 </html>
