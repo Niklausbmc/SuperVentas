@@ -94,8 +94,8 @@ window.agregarProducto = async () => {
 
 
 // 🔒 CERRAR SESIÓN
-window.cerrarSesion = () => {
+window.logout = () => {
   signOut(auth);
-  location.reload();
 };
+
 
