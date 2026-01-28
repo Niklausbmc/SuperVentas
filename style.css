@@ -179,45 +179,26 @@ header {
 }
 
 /* ELEMENTOS */
-#efectos span {
-  position: absolute;
-  top: -50px;
-  animation: caer linear infinite;
-  opacity: 0.8;
-}
-
-.primavera {
-  font-size: 22px;
-}
-.primavera::before {
-  content: "🌸";
-}
-
-.verano::before {
-  content: "☀️";
-}
-
-.otono::before {
-  content: "🍂";
-}
-
-.invierno::before {
-  content: "❄️";
-}
-
-@keyframes caer {
-  from {
-    transform: translateY(-50px);
-  }
-  to {
-    transform: translateY(110vh);
-  }
-}
-
 #efectos {
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 9999;
+  overflow: hidden;
 }
 
+.efecto {
+  position: absolute;
+  top: -30px;
+  animation: caer linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes caer {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(110vh);
+  }
+}
