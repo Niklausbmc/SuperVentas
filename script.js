@@ -205,3 +205,28 @@ function efectoEstacion() {
 }
 
 efectoEstacion();
+
+function estacion(tipo) {
+  const contenedor = document.getElementById("efectos");
+  contenedor.innerHTML = "";
+
+  let icono = "❄️";
+
+  if (tipo === "primavera") icono = "🌸";
+  if (tipo === "verano") icono = "☀️";
+  if (tipo === "otono") icono = "🍂";
+  if (tipo === "invierno") icono = "❄️";
+
+  for (let i = 0; i < 25; i++) {
+    const e = document.createElement("div");
+    e.className = "efecto";
+    e.textContent = icono;
+    e.style.left = Math.random() * 100 + "vw";
+    e.style.animationDuration = (4 + Math.random() * 6) + "s";
+    e.style.fontSize = (20 + Math.random() * 25) + "px";
+    contenedor.appendChild(e);
+  }
+}
+
+// 🔥 activar estación
+estacion("invierno");
