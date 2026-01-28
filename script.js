@@ -20,10 +20,11 @@ function cargarCSV() {
 
         productos.push({
           id: Number(id),
-          nombre,
+          nombre: nombre,
           precio: Number(precio),
-          stock: Number(stock)
-          imagen
+          stock: Number(stock),
+          categoria: categoria,
+          imagen: imagen
         });
       });
 
@@ -128,6 +129,7 @@ function enviarWhatsApp() {
 
   window.open(`https://wa.me/5355030439?text=${msg}`);
 }
+
 
 
 
